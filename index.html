@@ -29,6 +29,12 @@
   --color-gold:          #af963d;
   --color-gold-light:    #f5f0e0;
 
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-full: 9999px;
+
   --space-xs:  0.5rem;
   --space-sm:  1rem;
   --space-md:  2rem;
@@ -49,7 +55,7 @@ body {
   color: var(--color-text-primary);
   background: var(--color-bg);
   overflow-x: hidden;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 body.loading { overflow: hidden; }
 img  { display: block; max-width: 100%; }
@@ -66,9 +72,9 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   z-index: 9999;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
-#loader.out { opacity: 0; pointer-events: none; }
+#loader.out { opacity: 0; transform: translateY(-8px); pointer-events: none; }
 .loader-wordmark {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
@@ -85,7 +91,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 .loader-line::after {
   content: ''; position: absolute; left: 0; top: 0;
   height: 1px; width: 0;
-  background: var(--color-border-strong);
+  background: #af963d;
   animation: line-grow 1s ease-out 0.25s forwards;
 }
 @keyframes line-grow { to { width: 100%; } }
@@ -97,7 +103,9 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   position: sticky; top: 0; z-index: 100;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border);
-  height: 64px;
+  height: 80px;
+  box-shadow: 0 1px 0 var(--color-border), 0 4px 16px rgba(0,0,0,0.04);
+  transition: box-shadow 0.3s ease;
 }
 .nav-inner {
   max-width: 1200px; margin: 0 auto;
@@ -127,7 +135,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   transition: color 0.2s ease; cursor: pointer;
 }
 .nav-links a:hover { color: var(--color-text-primary); }
-.nav-links a.active { color: var(--color-accent); }
+.nav-links a.active { color: #af963d; }
 .nav-burger {
   display: none; flex-direction: column; gap: 5px;
   cursor: pointer; padding: 4px;
@@ -172,7 +180,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   font-family: 'Inter', sans-serif;
   font-size: 0.75rem; font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--color-text-tertiary);
+  color: #af963d;
 }
 .sec-heading {
   font-family: 'Cormorant Garamond', serif;
@@ -180,6 +188,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   font-size: clamp(2rem, 4vw, 3.2rem);
   color: var(--color-text-primary);
   line-height: 1.2; margin-top: 0.5rem;
+  letter-spacing: -0.02em;
 }
 
 /* ==========================================================
@@ -230,12 +239,15 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   font-size: 0.875rem; font-weight: 500;
   letter-spacing: 0.04em;
   padding: 0.85rem 2rem;
-  border-radius: 2px; border: none;
+  border-radius: var(--radius-md); border: none;
+  border-left: 3px solid #af963d;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 16px rgba(34, 82, 91, 0.25);
   text-decoration: none;
 }
-.btn-primary:hover { background: var(--color-accent-light); }
+.btn-primary:hover { background: var(--color-accent-light); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(34, 82, 91, 0.35); }
+.btn-primary:active { transform: translateY(0); }
 .link-secondary {
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem; font-weight: 400;
@@ -259,7 +271,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 .hero-stat-num {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300; font-size: 2.2rem;
-  color: var(--color-accent); line-height: 1;
+  color: #af963d; line-height: 1;
 }
 .hero-stat-lbl {
   font-family: 'Inter', sans-serif;
@@ -272,7 +284,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 .hero-img-wrap {
   position: relative;
   aspect-ratio: 1 / 1;
-  border-radius: 2px; overflow: hidden;
+  border-radius: var(--radius-lg); overflow: hidden;
   background: var(--color-surface);
 }
 .img-fallback {
@@ -308,7 +320,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
    ========================================================== */
 #numbers {
   background: var(--color-accent);
-  padding: 3rem 0;
+  padding: 4rem 0;
 }
 .numbers-inner {
   max-width: 1200px; margin: 0 auto;
@@ -328,7 +340,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 .num-val {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300; font-size: 3rem;
-  color: var(--color-white); line-height: 1;
+  color: #af963d; line-height: 1;
 }
 .num-lbl {
   font-family: 'Inter', sans-serif;
@@ -351,7 +363,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 }
 .about-rule {
   width: 40px; height: 1px;
-  background: var(--color-border-strong);
+  background: #af963d;
   margin: 1.5rem 0; border: none;
 }
 .about-body p {
@@ -361,7 +373,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 }
 .about-body p + p { margin-top: 1rem; }
 .about-img-wrap {
-  aspect-ratio: 4 / 3; border-radius: 2px;
+  aspect-ratio: 4 / 3; border-radius: var(--radius-lg);
   overflow: hidden; background: var(--color-surface);
 }
 .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
@@ -430,32 +442,34 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   color: var(--color-text-primary);
   background: var(--color-white);
   border: 1px solid var(--color-border);
-  border-radius: 2px;
-  padding: 0.65rem 1rem;
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.25rem;
   width: 260px; outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.spec-search:focus { border-color: var(--color-accent); }
+.spec-search:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(34, 82, 91, 0.12); }
 .spec-search::placeholder { color: var(--color-text-tertiary); }
 .spec-tabs {
   display: flex;
-  border-bottom: 1px solid var(--color-border);
-  margin-top: 2rem; gap: 0;
+  margin-top: 2rem; gap: 0.5rem; flex-wrap: wrap;
 }
 .spec-tab {
   font-family: 'Inter', sans-serif;
   font-size: 0.8rem; font-weight: 400;
-  color: var(--color-text-tertiary);
-  padding: 0.5rem 1rem;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px; cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  color: var(--color-text-secondary);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 .spec-tab.active {
-  color: var(--color-accent);
-  border-bottom-color: var(--color-accent);
+  color: var(--color-white);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
 }
-.spec-tab:hover:not(.active) { color: var(--color-text-primary); }
+.spec-tab:hover:not(.active) { color: var(--color-text-primary); background: var(--color-surface); }
 .spec-grid {
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 1px; background: var(--color-border);
@@ -464,9 +478,9 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 .spec-cell {
   background: var(--color-white);
   padding: 1.5rem; cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background-color 0.25s ease, transform 0.2s ease;
 }
-.spec-cell:hover { background: var(--color-accent-muted); }
+.spec-cell:hover { background: var(--color-accent-muted); transform: scale(1.02); }
 .spec-cell.hidden { display: none; }
 .spec-cell-name {
   font-family: 'Inter', sans-serif;
@@ -511,11 +525,12 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 .doc-card {
   background: var(--color-white);
   border: 1px solid var(--color-border);
-  border-radius: 2px; overflow: hidden;
+  border-radius: var(--radius-lg); overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
-.doc-card:hover { border-color: var(--color-border-strong); }
+.doc-card:hover { border-color: var(--color-border-strong); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.10); }
 .doc-card.hidden { display: none; }
 .doc-photo {
   aspect-ratio: 1 / 1;
@@ -560,19 +575,24 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 }
 .doc-visiting {
   font-family: 'Inter', sans-serif;
-  font-size: 0.75rem; font-weight: 300;
-  color: var(--color-text-tertiary);
+  font-size: 0.72rem; font-weight: 400;
+  color: #ffffff;
+  background: #af963d;
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-full);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 100%;
 }
 .doc-view {
   display: block;
   font-family: 'Inter', sans-serif;
   font-size: 0.8rem; font-weight: 400;
-  color: var(--color-accent);
+  color: #af963d;
   margin-top: 0.75rem; cursor: pointer;
   transition: color 0.2s ease;
 }
-.doc-view:hover { color: var(--color-accent-light); }
+.doc-view:hover { color: #8a7530; }
 
 /* ==========================================================
    DOCTOR PANEL
@@ -591,7 +611,9 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   background: var(--color-white);
   z-index: 200; overflow-y: auto;
   transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 16px 0 0 16px;
+  box-shadow: -8px 0 48px rgba(0,0,0,0.12);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 #doc-panel.open { transform: translateX(0); }
 .panel-close-row {
@@ -601,15 +623,19 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   padding: 1.25rem 2.5rem 0.75rem;
 }
 .panel-x {
-  font-size: 1.2rem; color: var(--color-text-tertiary);
-  cursor: pointer; padding: 0.2rem;
-  transition: color 0.2s ease;
+  font-size: 1.1rem; color: var(--color-text-tertiary);
+  cursor: pointer; padding: 0;
+  width: 32px; height: 32px;
+  border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-surface);
+  transition: color 0.2s ease, background 0.2s ease;
 }
-.panel-x:hover { color: var(--color-text-primary); }
+.panel-x:hover { color: var(--color-text-primary); background: var(--color-surface-2); }
 .panel-body { padding: 0 2.5rem 3rem; }
 .panel-img {
   width: 100%; height: 280px;
-  overflow: hidden; border-radius: 2px;
+  overflow: hidden; border-radius: var(--radius-lg);
   background: var(--color-surface-2);
   margin-bottom: 1.5rem; position: relative;
 }
@@ -638,7 +664,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 .panel-qual {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem; font-weight: 300;
-  color: var(--color-text-secondary); margin-top: 0.3rem;
+  color: #af963d; margin-top: 0.3rem;
 }
 .panel-avail-wrap { margin-top: 0.2rem; }
 .panel-avail-pre {
@@ -696,11 +722,12 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   background: var(--color-accent); color: var(--color-white);
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem; font-weight: 500;
-  padding: 1rem; border-radius: 2px;
+  padding: 1rem; border-radius: var(--radius-md);
   text-align: center; text-decoration: none;
-  transition: background 0.2s ease; border: none; cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease; border: none; cursor: pointer;
 }
-.panel-book:hover { background: var(--color-accent-light); }
+.panel-book:hover { background: var(--color-accent-light); transform: translateY(-1px); }
+.panel-book:active { transform: translateY(0); }
 
 /* ==========================================================
    FACILITIES
@@ -736,8 +763,9 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 }
 .fac-imgs { display: flex; flex-direction: column; gap: 1rem; }
 .fac-img-wrap {
-  aspect-ratio: 3 / 2; border-radius: 2px;
+  aspect-ratio: 3 / 2; border-radius: var(--radius-md);
   overflow: hidden; background: var(--color-surface);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 .fac-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 .fac-img-cap {
@@ -759,7 +787,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   gap: 6rem; align-items: center;
 }
 .founder-img-wrap {
-  aspect-ratio: 3 / 4; border-radius: 2px;
+  aspect-ratio: 3 / 4; border-radius: var(--radius-lg);
   overflow: hidden; background: rgba(255,255,255,0.08);
   position: relative;
 }
@@ -792,7 +820,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 }
 .founder-div {
   width: 40px; height: 1px;
-  background: rgba(255,255,255,0.25);
+  background: #af963d;
   margin: 1.5rem 0; border: none;
 }
 .founder-attr-name {
@@ -839,15 +867,17 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   background: #25D366; color: var(--color-white);
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem; font-weight: 500;
-  padding: 0.85rem 2rem; border-radius: 2px;
+  padding: 0.85rem 2rem; border-radius: var(--radius-md);
   text-align: center; text-decoration: none;
-  transition: background 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease;
   margin-top: 1.5rem; border: none; cursor: pointer;
 }
-.btn-wa-contact:hover { background: #1ebe5a; }
+.btn-wa-contact:hover { background: #1ebe5a; transform: translateY(-1px); }
+.btn-wa-contact:active { transform: translateY(0); }
 .contact-map {
   width: 100%; height: 360px;
-  border-radius: 2px; border: none; display: block;
+  border-radius: var(--radius-lg); border: none; display: block;
+  overflow: hidden;
 }
 
 /* ==========================================================
@@ -899,7 +929,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 .ft-emergency-num {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300; font-size: 1.4rem;
-  color: var(--color-white); margin-top: 0.25rem;
+  color: #af963d; margin-top: 0.25rem;
 }
 .ft-emergency-hrs {
   font-family: 'Inter', sans-serif;
@@ -932,25 +962,25 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   z-index: 150; width: 52px; height: 52px;
   border-radius: 50%; background: #25D366;
   display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.3s ease; text-decoration: none;
+  opacity: 0; transform: translateY(16px); pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease; text-decoration: none;
 }
-#wa-float.show { opacity: 1; pointer-events: auto; }
+#wa-float.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
 /* ==========================================================
    SCROLL ANIMATIONS
    ========================================================== */
 .afu {
-  opacity: 0; transform: translateY(24px);
+  opacity: 0; transform: translateY(32px);
   transition:
-    opacity  0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: calc(var(--sd, 0) * 0.1s);
+    opacity  0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--sd, 0) * 0.12s);
 }
 .afi {
   opacity: 0;
-  transition: opacity 0.6s ease-out;
-  transition-delay: calc(var(--sd, 0) * 0.1s);
+  transition: opacity 0.7s ease-out;
+  transition-delay: calc(var(--sd, 0) * 0.12s);
 }
 .afu.vis, .afi.vis { opacity: 1; transform: none; }
 
@@ -963,6 +993,8 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
 }
 @media (max-width: 768px) {
+  #nav { height: 68px; }
+  #nav a img { height: 56px !important; max-width: 180px !important; }
   .nav-links   { display: none; }
   .nav-burger  { display: flex; }
   .hero-inner  { display: flex; flex-direction: column; gap: 2rem; padding-top: 6rem; }
@@ -991,6 +1023,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   .doctors-grid  { grid-template-columns: 1fr; }
   .footer-grid   { grid-template-columns: 1fr; }
   .numbers-inner { grid-template-columns: repeat(2, 1fr); }
+  #footer img[src="images/nova_logo.png"] { height: 44px !important; }
 }
   </style>
 </head>
@@ -998,7 +1031,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 
 <!-- LOADER -->
 <div id="loader">
-  <img src="images/nova_logo.png" alt="Nova Lifeline" style="height:64px;width:auto;object-fit:contain;display:block;margin:0 auto;">
+  <img src="images/nova_logo.png" alt="Nova Lifeline" style="height:80px;width:auto;object-fit:contain;display:block;margin:0 auto;">
   <div class="loader-line"></div>
 </div>
 
@@ -1013,7 +1046,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 <nav id="nav">
   <div class="nav-inner">
     <a href="#home" style="display:flex;align-items:center;text-decoration:none;">
-      <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:52px;width:auto;object-fit:contain;display:block;">
+      <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:72px;width:auto;object-fit:contain;display:block;max-width:220px;">
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#hero" class="active">Home</a>
@@ -1378,7 +1411,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
           src="https://maps.google.com/maps?q=Imperial+Business+Center,+Bardoli+Kadodara+Road,+Bardoli,+Gujarat+394601,+India&output=embed&z=16"
           width="100%"
           height="360"
-          style="border:0;border-radius:2px;display:block;"
+          style="border:0;border-radius:16px;display:block;"
           allowfullscreen
           loading="lazy">
         </iframe>
@@ -1394,7 +1427,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:48px;width:auto;object-fit:contain;display:block;filter:brightness(0) invert(1);opacity:0.9;">
+        <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:56px;width:auto;object-fit:contain;display:block;filter:brightness(0) invert(1);opacity:0.9;max-width:200px;">
         <p class="ft-addr">Imperial Business Center, Bardoli Kadodara Road,<br>Surat, Gujarat 394601</p>
       </div>
       <div>
@@ -1801,10 +1834,10 @@ function initCounters() {
 
 function countUp(el, target, duration) {
   const start = performance.now();
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function easeOutExpo(t) { return 1 - Math.pow(1 - t, 4); }
   function frame(now) {
     const t = Math.min((now - start) / duration, 1);
-    el.textContent = Math.round(easeOutCubic(t) * target);
+    el.textContent = Math.round(easeOutExpo(t) * target);
     if (t < 1) requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
