@@ -103,7 +103,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   position: sticky; top: 0; z-index: 100;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border);
-  height: 80px;
+  height: 88px;
   box-shadow: 0 1px 0 var(--color-border), 0 4px 16px rgba(0,0,0,0.04);
   transition: box-shadow 0.3s ease;
 }
@@ -967,6 +967,10 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 }
 #wa-float.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
+/* Show More Buttons */
+#dept-show-more:hover { background: var(--color-accent) !important; color: white !important; }
+#doc-show-more:hover { background: #1a4149 !important; transform: translateY(-1px) !important; }
+
 /* ==========================================================
    SCROLL ANIMATIONS
    ========================================================== */
@@ -993,8 +997,8 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
 }
 @media (max-width: 768px) {
-  #nav { height: 68px; }
-  #nav a img { height: 56px !important; max-width: 180px !important; }
+  #nav { height: 72px; }
+  #nav a img { height: 52px !important; max-width: 160px !important; }
   .nav-links   { display: none; }
   .nav-burger  { display: flex; }
   .hero-inner  { display: flex; flex-direction: column; gap: 2rem; padding-top: 6rem; }
@@ -1012,17 +1016,23 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   .founder-grid { grid-template-columns: 1fr; gap: 3rem; }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   #doc-panel   { width: 100vw; }
-  .numbers-inner { grid-template-columns: repeat(2, 1fr); }
-  .hero-stats  { flex-direction: column; gap: 0; }
+  .numbers-inner { grid-template-columns: repeat(2, 1fr); gap: 0; }
+  .num-item { padding: 2rem 1rem; }
+  .num-item:not(:last-child)::after { display: none; }
+  .num-item { border-right: 1px solid rgba(255,255,255,0.15); border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .num-item:nth-child(2), .num-item:nth-child(4) { border-right: none; }
+  .num-item:nth-child(3), .num-item:nth-child(4) { border-bottom: none; }
+  .hero-stats  { flex-direction: column; gap: 0; align-items: center; }
   .hero-stat   { width: 100%; text-align: center; padding: 1.25rem 0; border-left: none !important; border-right: none; border-bottom: 1px solid var(--color-border); }
   .hero-stat:last-child { border-bottom: none; }
+  .hero-stat-num { text-align: center !important; display: block !important; width: 100% !important; }
+  .hero-stat-lbl { text-align: center !important; display: block !important; width: 100% !important; }
 }
 @media (max-width: 480px) {
   .services-grid { grid-template-columns: 1fr; }
   .spec-grid     { grid-template-columns: 1fr; }
   .doctors-grid  { grid-template-columns: 1fr; }
   .footer-grid   { grid-template-columns: 1fr; }
-  .numbers-inner { grid-template-columns: repeat(2, 1fr); }
   #footer img[src="images/nova_logo.png"] { height: 44px !important; }
 }
   </style>
@@ -1046,7 +1056,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 <nav id="nav">
   <div class="nav-inner">
     <a href="#home" style="display:flex;align-items:center;text-decoration:none;">
-      <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:72px;width:auto;object-fit:contain;display:block;max-width:220px;">
+      <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:64px;width:auto;object-fit:contain;display:block;max-width:200px;">
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#hero" class="active">Home</a>
@@ -1494,6 +1504,17 @@ const doctors = [
     achievements:["6000+ Primary Hip Replacements","500+ Revision Hip Replacements","4000+ Knee Replacements","15000+ Total Orthopaedic Cases"]
   },
   {
+    name:"Dr. Nirav Gondaliya",
+    photo:"images/Nirav_Gondaliya.jpg",
+    qualification:"MBBS, MD Respiratory Medicine, IDCCM, FCCS USA",
+    specialization:"Pulmonologist, ICU and Emergency Specialist",
+    visiting:"Every Tuesday — 5:00 PM to 7:00 PM",
+    departments:["Pulmonology and Respiratory Medicine","Critical Care and ICU"],
+    about:"Dr. Nirav Gondaliya is a highly trained Pulmonologist and Critical Care specialist. He holds an intensive care fellowship from the prestigious Hinduja Hospital Mumbai and is certified by FCCS USA — making him one of the most internationally qualified ICU and lung specialists in South Gujarat.",
+    services:["Asthma, Pneumonia, COPD and ARDS treatment","Pulmonary Function Test (PFT)","Pleural effusion drainage","Bronchoscopy lung examination","Complications of BP, Diabetes, Anaemia, Thyroid and Cholesterol","Paralysis, severe infections, Shock, poisoning and snakebite","ICU management and monitoring","Pre-operation fitness assessment and post-op care"],
+    achievements:[]
+  },
+  {
     name:"Dr. Anas Delair",
     photo:"images/Anas_Delair.jpg",
     qualification:"MBBS, MS Orthopaedics",
@@ -1524,17 +1545,6 @@ const doctors = [
     departments:["ENT Ear Nose and Throat"],
     about:"Dr. Akshay S. Suratwala is a Gold Medalist ENT surgeon trained in the latest endoscopic surgical techniques. He performs complex surgeries with minimal discomfort and faster recovery. From ear drum repair to sinus surgery, Dr. Akshay brings top-tier ENT care to Bardoli.",
     services:["Foreign body removal from the ear","Surgery for ear discharge","Hearing loss diagnosis and machine-assisted treatment","Vertigo diagnosis and treatment","Ear drum repair via Endoscopic Tympanoplasty — no stitches","Nasal allergies, polyps and sinus infections","Breathing problem diagnosis and treatment","Sinus disease endoscopic surgery","Nasal septum correction surgery","Thyroid, tonsils and throat lump treatment","Foreign body removal from throat","Swallowing problem treatment","Endoscopic throat surgeries"],
-    achievements:[]
-  },
-  {
-    name:"Dr. Nirav Gondaliya",
-    photo:"images/Nirav_Gondaliya.jpg",
-    qualification:"MBBS, MD Respiratory Medicine, IDCCM, FCCS USA",
-    specialization:"Pulmonologist, ICU and Emergency Specialist",
-    visiting:"Every Tuesday — 5:00 PM to 7:00 PM",
-    departments:["Pulmonology and Respiratory Medicine","Critical Care and ICU"],
-    about:"Dr. Nirav Gondaliya is a highly trained Pulmonologist and Critical Care specialist. He holds an intensive care fellowship from the prestigious Hinduja Hospital Mumbai and is certified by FCCS USA — making him one of the most internationally qualified ICU and lung specialists in South Gujarat.",
-    services:["Asthma, Pneumonia, COPD and ARDS treatment","Pulmonary Function Test (PFT)","Pleural effusion drainage","Bronchoscopy lung examination","Complications of BP, Diabetes, Anaemia, Thyroid and Cholesterol","Paralysis, severe infections, Shock, poisoning and snakebite","ICU management and monitoring","Pre-operation fitness assessment and post-op care"],
     achievements:[]
   },
   {
@@ -1730,11 +1740,11 @@ const doctors = [
    DEPARTMENTS DATA
    ============================================================ */
 const deptList = [
-  "Internal Medicine","Orthopaedics and Joint Replacement","Spine and Trauma Surgery",
-  "ENT Ear Nose and Throat","Pulmonology and Respiratory Medicine","Critical Care and ICU",
-  "Laparoscopic and Bariatric Surgery","Proctology","Urology",
-  "Gastroenterology and Hepatology","Endocrinology","Neurology","Neurosurgery",
-  "Psychiatry and Mental Health","Cardiology","Nephrology and Renal Care",
+  "Internal Medicine","Orthopaedics and Joint Replacement","ENT Ear Nose and Throat",
+  "Cardiology","Neurology","Urology","Gastroenterology and Hepatology","Critical Care and ICU",
+  "Spine and Trauma Surgery","Pulmonology and Respiratory Medicine",
+  "Laparoscopic and Bariatric Surgery","Proctology","Endocrinology","Neurosurgery",
+  "Psychiatry and Mental Health","Nephrology and Renal Care",
   "Kidney Transplant","Haemato Oncology","Plastic and Reconstructive Surgery",
   "Interventional Radiology","Spine and Pain Management","Oral and Maxillofacial Surgery",
   "Pharmacy","Pathology and Laboratory","Radiology and Imaging",
@@ -1897,6 +1907,8 @@ function initWaFloat() {
 let activeCat  = 'All';
 let specSearch = '';
 
+const DEPT_VISIBLE_LIMIT = 8;
+
 function buildSpecialities() {
   const grid = document.getElementById('spec-grid');
   grid.innerHTML = '';
@@ -1906,6 +1918,7 @@ function buildSpecialities() {
     cell.className = 'spec-cell afu';
     cell.style.setProperty('--sd', String(Math.min(i % 8, 5)));
     cell.dataset.dept = dept;
+    cell.dataset.deptCard = 'true';
 
     cell.innerHTML = `
       <div class="spec-cell-name">${dept}</div>
@@ -1915,8 +1928,36 @@ function buildSpecialities() {
       filterDoctorsByDept(dept);
       document.getElementById('doctors').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+    if (i >= DEPT_VISIBLE_LIMIT) {
+      cell.classList.add('dept-hidden');
+      cell.style.display = 'none';
+    }
     grid.appendChild(cell);
   });
+
+  // Show More button
+  const deptShowMoreBtn = document.createElement('div');
+  deptShowMoreBtn.id = 'dept-show-more-wrap';
+  deptShowMoreBtn.style.cssText = 'text-align:center;margin-top:2rem;grid-column:1/-1;';
+  deptShowMoreBtn.innerHTML = '<button id="dept-show-more" style="background:transparent;border:1px solid var(--color-accent);color:var(--color-accent);padding:0.75rem 2rem;border-radius:9999px;font-family:Inter,sans-serif;font-size:0.875rem;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:background 0.2s ease,color 0.2s ease;">View All 27 Specialities</button>';
+  grid.parentNode.insertBefore(deptShowMoreBtn, grid.nextSibling);
+
+  document.getElementById('dept-show-more').addEventListener('click', function() {
+    const hiddenDepts = grid.querySelectorAll('.dept-hidden');
+    if (hiddenDepts.length > 0) {
+      hiddenDepts.forEach(el => { el.classList.remove('dept-hidden'); el.style.display = ''; });
+      this.textContent = 'Show Less';
+    } else {
+      let count = 0;
+      grid.querySelectorAll('[data-dept-card]').forEach(el => {
+        count++;
+        if (count > DEPT_VISIBLE_LIMIT) { el.classList.add('dept-hidden'); el.style.display = 'none'; }
+      });
+      this.textContent = 'View All 27 Specialities';
+      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
   applySpecFilter();
 }
 
@@ -1950,11 +1991,14 @@ function initSpecSearch() {
 /* ============================================================
    BUILD DOCTORS GRID
    ============================================================ */
+const DOCTOR_VISIBLE_LIMIT = 3;
 let activeDept = null;
+let docShowMoreWrapper = null;
+let doctorsGridEl = null;
 
 function buildDoctors() {
-  const grid = document.getElementById('doctors-grid');
-  grid.innerHTML = '';
+  doctorsGridEl = document.getElementById('doctors-grid');
+  doctorsGridEl.innerHTML = '';
   doctors.forEach((doc, i) => {
     const init = initials(doc.name);
     const card = document.createElement('div');
@@ -1962,6 +2006,7 @@ function buildDoctors() {
     card.style.setProperty('--sd', String(Math.min(i % 4, 3)));
     card.dataset.name  = doc.name.toLowerCase();
     card.dataset.depts = doc.departments.join('|').toLowerCase();
+    card.dataset.doctorCard = 'true';
 
     card.innerHTML = `
       <div class="doc-photo">
@@ -1978,7 +2023,39 @@ function buildDoctors() {
       </div>
     `;
     card.addEventListener('click', () => openPanel(i));
-    grid.appendChild(card);
+    if (i >= DOCTOR_VISIBLE_LIMIT) {
+      card.classList.add('doctor-hidden');
+      card.style.display = 'none';
+    }
+    doctorsGridEl.appendChild(card);
+  });
+
+  // Show More wrapper
+  docShowMoreWrapper = document.createElement('div');
+  docShowMoreWrapper.style.cssText = 'text-align:center;margin-top:2.5rem;';
+  docShowMoreWrapper.innerHTML = `
+    <p style="font-family:Inter,sans-serif;font-size:0.875rem;color:var(--color-text-tertiary);margin-bottom:1rem;">Showing 3 of 23 specialists</p>
+    <button id="doc-show-more" style="background:var(--color-accent);color:white;border:none;padding:0.85rem 2.5rem;border-radius:9999px;font-family:Inter,sans-serif;font-size:0.875rem;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:background 0.2s ease,transform 0.15s ease;">View All 23 Specialists</button>
+  `;
+  doctorsGridEl.parentNode.insertBefore(docShowMoreWrapper, doctorsGridEl.nextSibling);
+
+  document.getElementById('doc-show-more').addEventListener('click', function() {
+    const countEl = this.previousElementSibling;
+    const hiddenDocs = doctorsGridEl.querySelectorAll('.doctor-hidden');
+    if (hiddenDocs.length > 0) {
+      hiddenDocs.forEach(el => { el.classList.remove('doctor-hidden'); el.style.display = ''; });
+      this.textContent = 'Show Less';
+      if (countEl) countEl.textContent = 'Showing all 23 specialists';
+    } else {
+      let count = 0;
+      doctorsGridEl.querySelectorAll('[data-doctor-card]').forEach(el => {
+        count++;
+        if (count > DOCTOR_VISIBLE_LIMIT) { el.classList.add('doctor-hidden'); el.style.display = 'none'; }
+      });
+      this.textContent = 'View All 23 Specialists';
+      if (countEl) countEl.textContent = 'Showing 3 of 23 specialists';
+      doctorsGridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 }
 
@@ -1986,16 +2063,41 @@ function filterDoctorsByDept(dept) {
   activeDept = dept;
   document.getElementById('doc-filter-name').textContent = dept;
   document.getElementById('doc-filter-state').classList.add('show');
-  document.querySelectorAll('.doc-card').forEach(card => {
+  // Remove hidden limit — show all cards first, then filter by dept
+  doctorsGridEl.querySelectorAll('.doc-card').forEach(card => {
+    card.classList.remove('doctor-hidden');
+    card.style.display = '';
     const match = card.dataset.depts.includes(dept.toLowerCase());
     card.classList.toggle('hidden', !match);
   });
+  // Hide the show-more wrapper when filter is active
+  if (docShowMoreWrapper) docShowMoreWrapper.style.display = 'none';
 }
 
 function clearDocFilter() {
   activeDept = null;
   document.getElementById('doc-filter-state').classList.remove('show');
-  document.querySelectorAll('.doc-card').forEach(c => c.classList.remove('hidden'));
+  // Show all cards, then re-apply the 3-card limit
+  let count = 0;
+  doctorsGridEl.querySelectorAll('.doc-card').forEach(card => {
+    card.classList.remove('hidden');
+    count++;
+    if (count > DOCTOR_VISIBLE_LIMIT) {
+      card.classList.add('doctor-hidden');
+      card.style.display = 'none';
+    } else {
+      card.classList.remove('doctor-hidden');
+      card.style.display = '';
+    }
+  });
+  // Show the show-more wrapper
+  if (docShowMoreWrapper) {
+    docShowMoreWrapper.style.display = '';
+    const btn = document.getElementById('doc-show-more');
+    const countEl = btn ? btn.previousElementSibling : null;
+    if (btn) btn.textContent = 'View All 23 Specialists';
+    if (countEl) countEl.textContent = 'Showing 3 of 23 specialists';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
