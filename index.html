@@ -3,1575 +3,2022 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nova Lifeline Super Speciality Hospital — Bardoli, Gujarat. 31 Specialists, 27 Departments, Advanced ICU, Class 100 OT. Open 24×7.">
+  <meta name="description" content="Nova Lifeline Super Speciality Hospital — Bardoli, Gujarat. 27 specialities, 31 specialists. Open 24 hours, 7 days.">
   <title>Nova Lifeline Super Speciality Hospital — Bardoli, Gujarat</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ===================== CSS VARIABLES ===================== */
-    :root {
-      --teal:        #0d5c63;
-      --teal-dark:   #0a3d42;
-      --teal-light:  #1a7a84;
-      --gold:        #b8952a;
-      --gold-light:  #d4af50;
-      --bg-light:    #f7f9fa;
-      --white:       #ffffff;
-      --text-dark:   #1a1a2e;
-      --text-grey:   #666666;
-      --shadow:      0 4px 24px rgba(13,92,99,0.14);
-      --shadow-hover:0 14px 44px rgba(13,92,99,0.24);
-      --radius:      12px;
-      --tr:          all 0.3s ease;
-    }
 
-    /* ===================== RESET ===================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: 'DM Sans', sans-serif; color: var(--text-dark); background: var(--white); overflow-x: hidden; }
-    h1,h2,h3,h4,h5 { font-family: 'Playfair Display', serif; }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    button { font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; background: none; }
+/* ==========================================================
+   ROOT VARIABLES
+   ========================================================== */
+:root {
+  --color-bg:            #FAFAF8;
+  --color-surface:       #F4F3F0;
+  --color-surface-2:     #ECEAE5;
+  --color-border:        #E0DDD7;
+  --color-border-strong: #C8C4BC;
+  --color-text-primary:  #1A1916;
+  --color-text-secondary:#5C5A55;
+  --color-text-tertiary: #9C9A94;
+  --color-accent:        #1B4D3E;
+  --color-accent-light:  #2D6B55;
+  --color-accent-muted:  #E8F0ED;
+  --color-white:         #FFFFFF;
+  --color-gold:          #8B6914;
+  --color-gold-light:    #F5F0E8;
 
-    /* ===================== PAGE LOADER ===================== */
-    #page-loader {
-      position: fixed; inset: 0; background: var(--teal);
-      z-index: 9999; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      transition: opacity 0.7s ease, visibility 0.7s ease;
-    }
-    #page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .loader-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 800;
-      color: var(--gold); letter-spacing: 6px;
-      animation: pulse-glow 1.1s ease-in-out infinite;
-    }
-    .loader-subtitle {
-      font-size: clamp(0.9rem, 2vw, 1.2rem); color: rgba(255,255,255,0.82);
-      letter-spacing: 3px; text-transform: uppercase;
-      margin-top: 10px; font-weight: 300;
-    }
-    @keyframes pulse-glow {
-      0%,100% { text-shadow: 0 0 20px rgba(184,149,42,.5),0 0 40px rgba(184,149,42,.3); transform: scale(1); }
-      50%      { text-shadow: 0 0 40px rgba(184,149,42,.9),0 0 80px rgba(184,149,42,.6); transform: scale(1.03); }
-    }
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  6rem;
+  --space-2xl: 10rem;
+  --space-3xl: 14rem;
+}
 
-    /* ===================== NAVBAR ===================== */
-    #navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 18px 40px; display: flex; align-items: center;
-      justify-content: space-between;
-      transition: all 0.4s ease; transform: translateY(-100%);
-    }
-    #navbar.visible { transform: translateY(0); }
-    #navbar.scrolled {
-      background: var(--teal);
-      box-shadow: 0 2px 24px rgba(0,0,0,0.28);
-      padding: 12px 40px;
-    }
-    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
-    .nav-logo-main { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.35rem; color: white; letter-spacing: 2px; }
-    .nav-logo-sub  { font-size: 0.68rem; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; margin-top: 3px; }
-    .nav-links { display: flex; gap: 4px; align-items: center; }
-    .nav-links a {
-      color: rgba(255,255,255,0.88); font-size: 0.88rem; font-weight: 500;
-      padding: 6px 14px; border-radius: 4px; position: relative;
-      transition: color 0.3s ease;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: 2px; left: 50%;
-      transform: translateX(-50%); width: 0; height: 2px;
-      background: var(--gold); transition: width 0.35s ease;
-    }
-    .nav-links a:hover::after, .nav-links a.active::after { width: 65%; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+/* ==========================================================
+   RESET
+   ========================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  overflow-x: hidden;
+  line-height: 1.8;
+}
+body.loading { overflow: hidden; }
+img  { display: block; max-width: 100%; }
+a    { text-decoration: none; color: inherit; }
+ul   { list-style: none; }
+button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; background: none; color: inherit; }
 
-    /* Hamburger */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 26px; height: 2px; background: white; transition: all 0.3s ease; border-radius: 2px; }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+/* ==========================================================
+   LOADER
+   ========================================================== */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--color-bg);
+  z-index: 9999;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: opacity 0.6s ease;
+}
+#loader.out { opacity: 0; pointer-events: none; }
+.loader-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2.5rem;
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+}
+.loader-line {
+  width: 120px; height: 1px;
+  background: var(--color-surface-2);
+  margin-top: 1.25rem;
+  position: relative; overflow: hidden;
+}
+.loader-line::after {
+  content: ''; position: absolute; left: 0; top: 0;
+  height: 1px; width: 0;
+  background: var(--color-border-strong);
+  animation: line-grow 1s ease-out 0.25s forwards;
+}
+@keyframes line-grow { to { width: 100%; } }
 
-    /* Mobile Menu */
-    .mobile-menu {
-      position: fixed; top: 0; left: 0; right: 0; background: var(--teal-dark);
-      z-index: 998; padding: 80px 30px 30px;
-      transform: translateY(-110%); transition: transform 0.4s cubic-bezier(.4,0,.2,1);
-    }
-    .mobile-menu.open { transform: translateY(0); }
-    .mobile-menu a { display: block; color: white; font-size: 1.15rem; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); transition: color 0.3s ease; }
-    .mobile-menu a:hover { color: var(--gold); }
+/* ==========================================================
+   NAVIGATION
+   ========================================================== */
+#nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  height: 64px;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-wordmark { display: flex; flex-direction: column; gap: 0.15rem; }
+.nav-wm-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500; font-size: 1.2rem;
+  color: var(--color-accent); letter-spacing: 0.01em; line-height: 1;
+}
+.nav-wm-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300; font-size: 0.65rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+.nav-links { display: flex; align-items: center; gap: 0.1rem; }
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem; font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+  padding: 0.4rem 0.8rem;
+  transition: color 0.2s ease; cursor: pointer;
+}
+.nav-links a:hover { color: var(--color-text-primary); }
+.nav-links a.active { color: var(--color-accent); }
+.nav-burger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px;
+}
+.nav-burger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--color-text-primary);
+  transition: all 0.3s ease; transform-origin: center;
+}
+.nav-burger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
 
-    /* ===================== HERO ===================== */
-    #hero {
-      min-height: 100vh; position: relative;
-      display: flex; align-items: center; overflow: hidden; background: var(--teal);
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, #082e32 0%, #0d5c63 35%, #1a7a84 65%, #0d5c63 100%);
-      background-size: 400% 400%; animation: gradient-shift 9s ease infinite;
-    }
-    @keyframes gradient-shift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .hero-dots {
-      position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
-      background-size: 30px 30px;
-    }
-    .hero-content {
-      position: relative; z-index: 1; width: 100%; max-width: 1280px;
-      margin: 0 auto; padding: 110px 40px 90px;
-      display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: center;
-    }
+/* Mobile overlay menu */
+#mob-menu {
+  position: fixed; inset: 0;
+  background: var(--color-white);
+  z-index: 99;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2.5rem;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+#mob-menu.open { opacity: 1; visibility: visible; }
+#mob-menu a {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 2.5rem;
+  color: var(--color-text-primary); letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+#mob-menu a:hover { color: var(--color-accent); }
 
-    /* Founder frame */
-    .founder-hero-wrapper {
-      display: flex; flex-direction: column; align-items: center; gap: 22px;
-      animation: float-hero 4s ease-in-out infinite;
-    }
-    @keyframes float-hero {
-      0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(-18px); }
-    }
-    .founder-frame {
-      position: relative; width: 300px; height: 380px;
-      border-radius: 18px;
-    }
-    .founder-frame-border {
-      position: absolute; inset: -4px; border-radius: 22px;
-      background: conic-gradient(from 0deg, var(--gold), var(--gold-light), #fffbe6, var(--gold), var(--gold-light), #fffbe6, var(--gold));
-      animation: spin-border 3.5s linear infinite; z-index: 0;
-    }
-    @keyframes spin-border { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .founder-frame-bg {
-      position: absolute; inset: 4px; border-radius: 14px;
-      background: var(--teal); z-index: 1;
-    }
-    .founder-frame-img {
-      position: absolute; inset: 4px; border-radius: 14px;
-      overflow: hidden; z-index: 2;
-    }
-    .founder-frame-img img { width: 100%; height: 100%; object-fit: cover; }
-    .founder-caption { text-align: center; }
-    .founder-caption h3 { color: white; font-size: 1.35rem; }
-    .founder-caption .sub { color: var(--gold); font-size: 0.82rem; margin-top: 5px; line-height: 1.5; }
-    .founder-caption .quote { color: rgba(255,255,255,0.72); font-style: italic; font-size: 0.82rem; margin-top: 6px; }
+/* ==========================================================
+   LAYOUT HELPERS
+   ========================================================== */
+.container {
+  max-width: 1200px; margin: 0 auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+}
+.lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+.sec-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--color-text-primary);
+  line-height: 1.2; margin-top: 0.5rem;
+}
 
-    /* Hero right */
-    .hero-right { color: white; }
-    .hero-title {
-      font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5.5vw, 5.2rem);
-      font-weight: 800; line-height: 1; margin-bottom: 8px; min-height: 1.1em;
-    }
-    .hero-title .letter {
-      display: inline-block; opacity: 0; transform: translateY(32px);
-      animation: letter-in 0.45s ease forwards;
-    }
-    .hero-title .letter.space { display: inline-block; width: 0.35em; }
-    @keyframes letter-in { to { opacity: 1; transform: translateY(0); } }
-    .hero-sub {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.05rem, 2vw, 1.45rem);
-      color: var(--gold); margin-bottom: 14px; font-style: italic;
-    }
-    .hero-tagline {
-      font-size: clamp(0.9rem, 1.4vw, 1.08rem); color: rgba(255,255,255,0.82);
-      margin-bottom: 32px; min-height: 2.2em; font-weight: 300; line-height: 1.6;
-    }
-    .hero-tagline .cursor { border-right: 2px solid var(--gold); animation: blink 0.7s step-end infinite; margin-left: 1px; }
-    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+/* ==========================================================
+   HERO
+   ========================================================== */
+#hero {
+  min-height: 92vh;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  padding-top: 8rem; padding-bottom: var(--space-xl);
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 6rem; align-items: center;
+}
+.hero-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: 1.5rem;
+}
+.hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+}
+.hero-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem; font-weight: 300;
+  line-height: 1.8; color: var(--color-text-secondary);
+  margin-top: 1.5rem; max-width: 480px;
+}
+.hero-actions {
+  display: flex; align-items: center;
+  margin-top: 2.5rem;
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 0.85rem 2rem;
+  border-radius: 2px; border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--color-accent-light); }
+.link-secondary {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 400;
+  color: var(--color-accent);
+  margin-left: 2rem; cursor: pointer;
+  transition: color 0.2s ease;
+}
+.link-secondary:hover { text-decoration: underline; }
+.hero-stats {
+  display: flex; align-items: stretch;
+  margin-top: 3.5rem; padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  gap: 0;
+}
+.hero-stat { flex: 1; padding-right: 2rem; }
+.hero-stat + .hero-stat {
+  border-left: 1px solid var(--color-border);
+  padding-left: 2rem; padding-right: 0;
+}
+.hero-stat:last-child { padding-right: 0; }
+.hero-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 2.2rem;
+  color: var(--color-accent); line-height: 1;
+}
+.hero-stat-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--color-text-tertiary); margin-top: 0.35rem;
+}
+/* Hero right */
+.hero-img-col { display: flex; flex-direction: column; }
+.hero-img-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 2px; overflow: hidden;
+  background: var(--color-surface);
+}
+.img-fallback {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 4rem;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+.hero-img-wrap img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero-img-cap {
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--color-border);
+  margin-top: 1px;
+}
+.hero-cap-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem; font-weight: 500;
+  color: var(--color-text-primary);
+}
+.hero-cap-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 300;
+  color: var(--color-text-secondary); margin-top: 0.25rem;
+}
 
-    /* Stats */
-    .hero-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-bottom: 32px; }
-    .stat-box {
-      border: 1.5px solid var(--gold); background: rgba(255,255,255,0.075);
-      border-radius: 10px; padding: 16px 14px; text-align: center;
-      backdrop-filter: blur(4px); opacity: 0; transform: translateY(24px) scale(0.94);
-    }
-    .stat-box.in { animation: stat-bounce-in 0.6s ease forwards; }
-    @keyframes stat-bounce-in {
-      0%   { opacity: 0; transform: translateY(24px) scale(0.9); }
-      65%  { transform: translateY(-5px) scale(1.03); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .stat-number { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: white; }
-    .stat-label  { font-size: 0.78rem; color: rgba(255,255,255,0.68); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+/* ==========================================================
+   NUMBERS BAR
+   ========================================================== */
+#numbers {
+  background: var(--color-accent);
+  padding: 3rem 0;
+}
+.numbers-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.num-item {
+  text-align: center; padding: 1rem 2rem;
+  position: relative;
+}
+.num-item:not(:last-child)::after {
+  content: ''; position: absolute;
+  right: 0; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 55%;
+  background: rgba(255,255,255,0.15);
+}
+.num-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 3rem;
+  color: var(--color-white); line-height: 1;
+}
+.num-lbl {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300; font-size: 0.8rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.7); margin-top: 0.4rem;
+}
 
-    /* Hero buttons */
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 26px; border-radius: 8px; font-size: 0.94rem;
-      font-weight: 600; cursor: pointer; transition: var(--tr);
-      position: relative; overflow: hidden; text-decoration: none;
-      font-family: 'DM Sans', sans-serif; border: none;
-    }
-    .btn-gold { background: var(--gold); color: white; animation: btn-pulse-gold 2.2s ease-in-out infinite; }
-    @keyframes btn-pulse-gold {
-      0%,100% { box-shadow: 0 0 0 0 rgba(184,149,42,.45); }
-      50%      { box-shadow: 0 0 0 14px rgba(184,149,42,0); }
-    }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-outline-white { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.65); }
-    .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
-    .btn-teal { background: var(--teal); color: white; }
-    .btn-teal:hover { background: var(--teal-light); transform: translateY(-2px); }
-    .btn-outline-teal { background: transparent; color: var(--teal); border: 2px solid var(--teal); }
-    .btn-outline-teal:hover { background: var(--teal); color: white; }
-    /* Ripple */
-    .ripple {
-      position: absolute; border-radius: 50%;
-      background: rgba(255,255,255,0.28); transform: scale(0);
-      animation: ripple-go 0.6s linear; pointer-events: none;
-    }
-    @keyframes ripple-go { to { transform: scale(4.5); opacity: 0; } }
+/* ==========================================================
+   ABOUT
+   ========================================================== */
+#about {
+  background: var(--color-white);
+  padding-block: var(--space-2xl);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 45fr 55fr;
+  gap: 6rem; align-items: start;
+}
+.about-rule {
+  width: 40px; height: 1px;
+  background: var(--color-border-strong);
+  margin: 1.5rem 0; border: none;
+}
+.about-body p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem; font-weight: 300;
+  line-height: 1.9; color: var(--color-text-secondary);
+}
+.about-body p + p { margin-top: 1rem; }
+.about-img-wrap {
+  aspect-ratio: 4 / 3; border-radius: 2px;
+  overflow: hidden; background: var(--color-surface);
+}
+.about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.about-meta {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0 1.5rem;
+}
+.about-meta-item { padding-top: 1rem; border-top: 1px solid var(--color-border); }
+.about-meta-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+.about-meta-val {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 300;
+  color: var(--color-text-primary); margin-top: 0.3rem;
+}
 
-    /* Scroll arrow */
-    .scroll-arrow {
-      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      color: rgba(255,255,255,0.75); font-size: 1.9rem;
-      animation: bounce-arrow 2.1s ease-in-out infinite; cursor: pointer; z-index: 2;
-    }
-    @keyframes bounce-arrow {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50%      { transform: translateX(-50%) translateY(11px); }
-    }
+/* ==========================================================
+   SERVICES STRIP
+   ========================================================== */
+#services {
+  background: var(--color-surface);
+  padding-block: var(--space-xl);
+}
+.services-top { max-width: 520px; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--color-border);
+  margin-top: 3rem;
+}
+.svc-cell {
+  background: var(--color-surface);
+  padding: 2rem 1.5rem;
+  transition: background 0.3s ease;
+}
+.svc-cell:hover { background: var(--color-white); }
+.svc-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--color-text-primary); margin-bottom: 0.75rem;
+}
+.svc-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 300;
+  color: var(--color-text-secondary); line-height: 1.7;
+}
 
-    /* ===================== SECTIONS COMMON ===================== */
-    .section { padding: 90px 40px; }
-    .container { max-width: 1280px; margin: 0 auto; }
-    .section-heading {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.9rem);
-      color: var(--teal); margin-bottom: 10px;
-      position: relative; display: inline-block;
-    }
-    .section-heading::after {
-      content: ''; position: absolute; bottom: -8px; left: 0;
-      width: 0; height: 3px; background: var(--gold); transition: width 0.85s ease;
-    }
-    .section-heading.drawn::after { width: 100%; }
-    .section-sub { font-size: 1rem; color: var(--text-grey); margin-top: 20px; margin-bottom: 48px; }
+/* ==========================================================
+   SPECIALITIES
+   ========================================================== */
+#specialities {
+  background: var(--color-white);
+  padding-block: var(--space-2xl);
+}
+.spec-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem; align-items: end;
+}
+.spec-search {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 300;
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  padding: 0.65rem 1rem;
+  width: 260px; outline: none;
+  transition: border-color 0.2s ease;
+}
+.spec-search:focus { border-color: var(--color-accent); }
+.spec-search::placeholder { color: var(--color-text-tertiary); }
+.spec-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  margin-top: 2rem; gap: 0;
+}
+.spec-tab {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 400;
+  color: var(--color-text-tertiary);
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px; cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.spec-tab.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+.spec-tab:hover:not(.active) { color: var(--color-text-primary); }
+.spec-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--color-border);
+  margin-top: 2rem;
+}
+.spec-cell {
+  background: var(--color-white);
+  padding: 1.5rem; cursor: pointer;
+  transition: background 0.2s ease;
+}
+.spec-cell:hover { background: var(--color-accent-muted); }
+.spec-cell.hidden { display: none; }
+.spec-cell-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem; font-weight: 500;
+  color: var(--color-text-primary);
+}
+.spec-cell-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 300;
+  color: var(--color-text-tertiary); margin-top: 0.25rem;
+}
 
-    /* Scroll animations */
-    .fade-up   { opacity: 0; transform: translateY(42px); transition: opacity 0.75s ease, transform 0.75s ease; }
-    .fade-left  { opacity: 0; transform: translateX(-56px); transition: opacity 0.75s ease, transform 0.75s ease; }
-    .fade-right { opacity: 0; transform: translateX(56px); transition: opacity 0.75s ease, transform 0.75s ease; }
-    .fade-up.vis, .fade-left.vis, .fade-right.vis { opacity: 1; transform: none; }
+/* ==========================================================
+   DOCTORS
+   ========================================================== */
+#doctors {
+  background: var(--color-surface);
+  padding-block: var(--space-2xl);
+}
+.doc-intro {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem; font-weight: 300;
+  color: var(--color-text-secondary);
+  margin-top: 0.75rem; max-width: 580px;
+}
+.doc-filter-state {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 300;
+  color: var(--color-text-secondary);
+  margin-top: 1rem; display: none;
+}
+.doc-filter-state.show { display: block; }
+.doc-filter-clear {
+  color: var(--color-accent); cursor: pointer;
+  font-weight: 400; margin-left: 0.35rem;
+}
+.doc-filter-clear:hover { text-decoration: underline; }
+.doctors-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem; margin-top: 3rem;
+}
+.doc-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 2px; overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.doc-card:hover { border-color: var(--color-border-strong); }
+.doc-card.hidden { display: none; }
+.doc-photo {
+  aspect-ratio: 1 / 1;
+  background: var(--color-surface-2);
+  overflow: hidden; position: relative;
+}
+.doc-initials {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 2.5rem;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+.doc-photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+.doc-body { padding: 1.25rem; }
+.doc-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem; font-weight: 500;
+  color: var(--color-text-primary);
+}
+.doc-qual {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 300;
+  color: var(--color-text-tertiary); margin-top: 0.2rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.doc-spec {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 300;
+  color: var(--color-accent); margin-top: 0.4rem;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+  line-height: 1.45;
+}
+.doc-sep {
+  border: none; border-top: 1px solid var(--color-border);
+  margin: 0.75rem 0;
+}
+.doc-visiting {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 300;
+  color: var(--color-text-tertiary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.doc-view {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 400;
+  color: var(--color-accent);
+  margin-top: 0.75rem; cursor: pointer;
+  transition: color 0.2s ease;
+}
+.doc-view:hover { color: var(--color-accent-light); }
 
-    /* ===================== ABOUT ===================== */
-    #about { background: var(--bg-light); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .about-img-wrap { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); height: 460px; }
-    .about-img-wrap img { width: 100%; height: 110%; object-fit: cover; margin-top: -5%; }
-    .about-text p { font-size: 1rem; line-height: 1.82; color: #444; margin-bottom: 28px; }
-    .feature-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .feature-card {
-      background: white; border-radius: 10px; padding: 22px 18px;
-      border-top: 3px solid var(--gold); box-shadow: 0 2px 14px rgba(0,0,0,0.07);
-      transition: var(--tr);
-    }
-    .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-    .feature-card .f-icon { font-size: 1.9rem; margin-bottom: 10px; }
-    .feature-card h4 { font-family: 'Playfair Display', serif; color: var(--teal); font-size: 0.95rem; margin-bottom: 5px; }
-    .feature-card p  { font-size: 0.82rem; color: var(--text-grey); }
+/* ==========================================================
+   DOCTOR PANEL
+   ========================================================== */
+#panel-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,25,22,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 199; opacity: 0; visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+#panel-overlay.open { opacity: 1; visibility: visible; }
+#doc-panel {
+  position: fixed; top: 0; right: 0;
+  width: 540px; height: 100vh;
+  background: var(--color-white);
+  z-index: 200; overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#doc-panel.open { transform: translateX(0); }
+.panel-close-row {
+  position: sticky; top: 0; z-index: 1;
+  background: var(--color-white);
+  display: flex; justify-content: flex-end;
+  padding: 1.25rem 2.5rem 0.75rem;
+}
+.panel-x {
+  font-size: 1.2rem; color: var(--color-text-tertiary);
+  cursor: pointer; padding: 0.2rem;
+  transition: color 0.2s ease;
+}
+.panel-x:hover { color: var(--color-text-primary); }
+.panel-body { padding: 0 2.5rem 3rem; }
+.panel-img {
+  width: 100%; height: 280px;
+  overflow: hidden; border-radius: 2px;
+  background: var(--color-surface-2);
+  margin-bottom: 1.5rem; position: relative;
+}
+.panel-img img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.panel-img-init {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 4rem;
+  color: var(--color-text-tertiary);
+}
+.panel-dept-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+.panel-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 2rem;
+  color: var(--color-text-primary);
+  margin-top: 0.25rem; line-height: 1.2;
+}
+.panel-qual {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem; font-weight: 300;
+  color: var(--color-text-secondary); margin-top: 0.3rem;
+}
+.panel-avail-wrap { margin-top: 0.2rem; }
+.panel-avail-pre {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+.panel-avail {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem; font-weight: 300;
+  color: var(--color-text-secondary);
+}
+.panel-div {
+  border: none; border-top: 1px solid var(--color-border);
+  margin: 1.5rem 0;
+}
+.panel-sec-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-text-tertiary); margin-bottom: 0.5rem;
+}
+.panel-about {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem; font-weight: 300;
+  line-height: 1.8; color: var(--color-text-secondary);
+}
+.panel-svc-wrap { margin-top: 1.5rem; }
+.panel-svc-list { list-style: none; }
+.panel-svc-list li {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 300;
+  color: var(--color-text-secondary); line-height: 1.6;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.panel-svc-list li:last-child { border-bottom: none; }
+.panel-ach-wrap { margin-top: 1.5rem; }
+.panel-ach-list { list-style: none; }
+.panel-ach-list li {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 300;
+  color: var(--color-text-secondary); line-height: 1.6;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.panel-ach-list li:last-child { border-bottom: none; }
+.panel-cta-wrap {
+  margin-top: 2rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+.panel-book {
+  display: block; width: 100%;
+  background: var(--color-accent); color: var(--color-white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 500;
+  padding: 1rem; border-radius: 2px;
+  text-align: center; text-decoration: none;
+  transition: background 0.2s ease; border: none; cursor: pointer;
+}
+.panel-book:hover { background: var(--color-accent-light); }
 
-    /* ===================== FOUNDER SPOTLIGHT ===================== */
-    #founder {
-      background: var(--teal); position: relative; overflow: hidden;
-    }
-    #founder::before {
-      content: ''; position: absolute; inset: 0;
-      background: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 40px);
-    }
-    .founder-grid { display: grid; grid-template-columns: 1fr 1.7fr; gap: 72px; align-items: center; position: relative; z-index: 1; }
-    .founder-spotlight-left { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-    .founder-circle {
-      width: 230px; height: 230px; border-radius: 50%; overflow: hidden;
-      border: 4px solid var(--gold);
-      animation: glow-gold 2.2s ease-in-out infinite;
-    }
-    @keyframes glow-gold {
-      0%,100% { box-shadow: 0 0 0 4px rgba(184,149,42,.35), 0 0 22px rgba(184,149,42,.35); }
-      50%      { box-shadow: 0 0 0 7px rgba(184,149,42,.6),  0 0 44px rgba(184,149,42,.6); }
-    }
-    .founder-circle img { width: 100%; height: 100%; object-fit: cover; }
-    .founder-id { text-align: center; }
-    .founder-id h3 { color: white; font-size: 1.2rem; }
-    .founder-id .qual  { color: var(--gold); font-size: 0.84rem; margin-top: 4px; }
-    .founder-id .title { color: rgba(255,255,255,0.6); font-size: 0.78rem; margin-top: 3px; }
-    .founder-msg { color: white; }
-    .founder-label { color: var(--gold); font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
-    .founder-msg h2 { font-size: clamp(1.55rem, 2.4vw, 2.15rem); margin-bottom: 22px; }
-    .founder-msg p  { font-size: 1rem; line-height: 1.84; color: rgba(255,255,255,0.84); margin-bottom: 26px; }
-    .founder-divider { height: 2px; background: linear-gradient(to right, var(--gold), transparent); margin-bottom: 18px; }
-    .founder-sig { color: var(--gold); font-style: italic; font-size: 0.96rem; }
+/* ==========================================================
+   FACILITIES
+   ========================================================== */
+#facilities {
+  background: var(--color-white);
+  padding-block: var(--space-2xl);
+}
+.fac-intro {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem; font-weight: 300;
+  line-height: 1.8; color: var(--color-text-secondary);
+  margin-top: 0.75rem; max-width: 620px;
+}
+.fac-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; margin-top: 4rem; align-items: start;
+}
+.fac-list-item {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.fac-list-item:first-child { border-top: 1px solid var(--color-border); }
+.fac-item-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem; font-weight: 500;
+  color: var(--color-text-primary);
+}
+.fac-item-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem; font-weight: 300;
+  color: var(--color-text-secondary); margin-top: 0.2rem;
+}
+.fac-imgs { display: flex; flex-direction: column; gap: 1rem; }
+.fac-img-wrap {
+  aspect-ratio: 3 / 2; border-radius: 2px;
+  overflow: hidden; background: var(--color-surface);
+}
+.fac-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.fac-img-cap {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 300;
+  color: var(--color-text-tertiary); margin-top: 0.4rem;
+}
 
-    /* ===================== DEPARTMENTS ===================== */
-    #departments { background: white; }
-    .dept-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
-    .dept-card {
-      padding: 22px 14px; border: 1.5px solid rgba(13,92,99,0.18);
-      border-radius: 10px; text-align: center; cursor: pointer;
-      transition: var(--tr); background: white; user-select: none;
-    }
-    .dept-card:hover { background: var(--teal); border-color: var(--teal); transform: translateY(-4px); box-shadow: var(--shadow); }
-    .dept-card:hover .dept-icon { transform: scale(1.2); }
-    .dept-card:hover .dept-name { color: var(--gold); }
-    .dept-card.active { background: var(--gold); border-color: var(--gold); }
-    .dept-card.active .dept-name { color: white; }
-    .dept-icon { font-size: 2rem; margin-bottom: 10px; transition: transform 0.3s ease; display: block; }
-    .dept-name { font-weight: 600; font-size: 0.82rem; color: var(--teal); transition: color 0.3s ease; line-height: 1.4; }
+/* ==========================================================
+   FOUNDER
+   ========================================================== */
+#founder {
+  background: var(--color-accent);
+  padding-block: var(--space-2xl);
+}
+.founder-grid {
+  display: grid;
+  grid-template-columns: 40fr 60fr;
+  gap: 6rem; align-items: center;
+}
+.founder-img-wrap {
+  aspect-ratio: 3 / 4; border-radius: 2px;
+  overflow: hidden; background: rgba(255,255,255,0.08);
+  position: relative;
+}
+.founder-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.founder-img-init {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 4rem;
+  color: rgba(255,255,255,0.3);
+}
+.founder-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.founder-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--color-white); line-height: 1.3;
+  margin-top: 0.75rem;
+}
+.founder-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 300;
+  line-height: 1.9; color: rgba(255,255,255,0.75);
+  margin-top: 1.5rem;
+}
+.founder-div {
+  width: 40px; height: 1px;
+  background: rgba(255,255,255,0.25);
+  margin: 1.5rem 0; border: none;
+}
+.founder-attr-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--color-white);
+}
+.founder-attr-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 300;
+  color: rgba(255,255,255,0.55); margin-top: 0.1rem;
+}
 
-    /* ===================== DOCTORS ===================== */
-    #doctors { background: var(--bg-light); }
-    .doctors-controls { display: flex; gap: 14px; margin-bottom: 32px; flex-wrap: wrap; align-items: center; }
-    .search-bar {
-      flex: 1; min-width: 200px; padding: 12px 18px;
-      border: 2px solid rgba(13,92,99,0.2); border-radius: 8px;
-      font-size: 0.95rem; font-family: 'DM Sans', sans-serif; outline: none;
-      transition: border-color 0.3s ease;
-    }
-    .search-bar:focus { border-color: var(--teal); }
-    .btn-reset {
-      padding: 12px 20px; background: var(--teal); color: white;
-      border-radius: 8px; font-size: 0.9rem; font-weight: 500;
-      transition: var(--tr); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
-    }
-    .btn-reset:hover { background: var(--teal-light); }
-    .filter-badge {
-      display: none; align-items: center; gap: 8px;
-      background: var(--gold); color: white;
-      padding: 8px 14px; border-radius: 20px; font-size: 0.83rem;
-    }
-    .filter-badge.show { display: flex; }
-    .filter-badge button { background: none; border: none; color: white; cursor: pointer; font-size: 1rem; line-height: 1; }
-    .doctors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 22px; }
-    .doctor-card {
-      background: white; border-radius: 12px; padding: 24px 18px;
-      text-align: center; box-shadow: 0 2px 14px rgba(0,0,0,0.07);
-      transition: all 0.4s ease; cursor: pointer; position: relative;
-    }
-    .doctor-card:hover { transform: translateY(-6px); box-shadow: 0 0 0 2px var(--gold), var(--shadow-hover); }
-    .doc-photo-wrap {
-      width: 96px; height: 96px; border-radius: 50%; overflow: hidden;
-      margin: 0 auto 16px; border: 3px solid rgba(13,92,99,0.15);
-    }
-    .doc-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .doc-name { font-family: 'Playfair Display', serif; font-size: 0.97rem; color: var(--teal); font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-    .doc-qual  { font-size: 0.76rem; color: var(--text-grey); margin-bottom: 6px; }
-    .doc-spec  { font-size: 0.78rem; color: var(--teal); font-style: italic; margin-bottom: 10px; line-height: 1.4; }
-    .doc-visiting { display: inline-block; background: var(--gold); color: white; font-size: 0.68rem; padding: 3px 9px; border-radius: 12px; margin-bottom: 14px; font-weight: 500; line-height: 1.4; text-align: center; }
-    .btn-view {
-      width: 100%; padding: 9px; background: var(--teal); color: white;
-      border: none; border-radius: 6px; font-size: 0.84rem;
-      font-weight: 500; transition: var(--tr);
-    }
-    .btn-view:hover { background: var(--gold); }
+/* ==========================================================
+   CONTACT
+   ========================================================== */
+#contact {
+  background: var(--color-surface);
+  padding-block: var(--space-2xl);
+}
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; margin-top: 3rem;
+}
+.contact-row {
+  display: grid; grid-template-columns: 130px 1fr;
+  gap: 1rem; padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+  align-items: start;
+}
+.c-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--color-text-tertiary); padding-top: 0.1rem;
+}
+.c-val {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 300;
+  color: var(--color-text-primary); line-height: 1.6;
+}
+.btn-wa-contact {
+  display: block; width: 100%;
+  background: #25D366; color: var(--color-white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; font-weight: 500;
+  padding: 0.85rem 2rem; border-radius: 2px;
+  text-align: center; text-decoration: none;
+  transition: background 0.2s ease;
+  margin-top: 1.5rem; border: none; cursor: pointer;
+}
+.btn-wa-contact:hover { background: #1ebe5a; }
+.contact-map {
+  width: 100%; height: 360px;
+  border-radius: 2px; border: none; display: block;
+}
 
-    /* ===================== DOCTOR PANEL ===================== */
-    .panel-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.52);
-      z-index: 1900; opacity: 0; visibility: hidden; transition: all 0.4s ease;
-    }
-    .panel-overlay.show { opacity: 1; visibility: visible; }
-    #doctor-panel {
-      position: fixed; top: 0; right: -105%; width: min(580px,100vw);
-      height: 100vh; background: white; z-index: 2000;
-      box-shadow: -8px 0 44px rgba(0,0,0,0.22);
-      overflow-y: auto; transition: right 0.42s cubic-bezier(.4,0,.2,1);
-    }
-    #doctor-panel.open { right: 0; }
-    .panel-header { background: var(--teal); padding: 32px 28px 28px; text-align: center; position: relative; }
-    .panel-close {
-      position: absolute; top: 14px; right: 14px;
-      background: rgba(255,255,255,0.14); color: white;
-      width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
-      font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
-      transition: var(--tr); border: none;
-    }
-    .panel-close:hover { background: rgba(255,255,255,0.28); }
-    .panel-photo {
-      width: 128px; height: 128px; border-radius: 50%; overflow: hidden;
-      margin: 0 auto 16px; border: 3px solid var(--gold);
-      animation: glow-gold 2.2s ease-in-out infinite;
-    }
-    .panel-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .panel-name { color: white; font-size: 1.45rem; margin-bottom: 5px; }
-    .panel-qual { color: var(--gold); font-size: 0.88rem; margin-bottom: 6px; }
-    .panel-spec { color: rgba(255,255,255,0.78); font-size: 0.84rem; font-style: italic; }
-    .panel-body { padding: 28px; }
-    .panel-exp   { display: inline-block; background: var(--gold); color: white; padding: 5px 16px; border-radius: 20px; font-size: 0.84rem; font-weight: 600; margin-bottom: 18px; }
-    .panel-visit { display: flex; gap: 10px; align-items: flex-start; background: var(--bg-light); padding: 14px; border-radius: 8px; margin-bottom: 22px; }
-    .panel-visit .ico { font-size: 1.25rem; flex-shrink: 0; }
-    .panel-visit p  { font-size: 0.86rem; color: var(--text-grey); line-height: 1.55; }
-    .panel-sec-title { font-family: 'Playfair Display', serif; color: var(--teal); font-size: 1.05rem; margin-bottom: 12px; border-left: 3px solid var(--gold); padding-left: 10px; }
-    .panel-about { font-size: 0.9rem; line-height: 1.78; color: #444; margin-bottom: 24px; }
-    .panel-services { margin-bottom: 24px; }
-    .panel-services li {
-      padding: 8px 0; border-bottom: 1px solid #f0f0f0;
-      font-size: 0.87rem; color: #444; display: flex; align-items: flex-start; gap: 8px;
-      opacity: 0; transform: translateX(20px);
-    }
-    .panel-services li.rev { animation: svc-rev 0.4s ease forwards; }
-    @keyframes svc-rev { to { opacity: 1; transform: translateX(0); } }
-    .panel-services li::before { content: '✦'; color: var(--gold); flex-shrink: 0; font-size: 0.68rem; margin-top: 4px; }
-    .panel-ach { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap: 12px; margin-bottom: 24px; }
-    .ach-box { background: var(--teal); color: white; padding: 12px; border-radius: 8px; text-align: center; font-size: 0.8rem; line-height: 1.5; }
-    .panel-actions { display: flex; flex-direction: column; gap: 12px; }
-    .btn-wa {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 14px; background: #25d366; color: white; border-radius: 8px;
-      font-size: 0.94rem; font-weight: 600; text-decoration: none;
-      animation: btn-pulse-gold 2.2s ease-in-out infinite; transition: var(--tr); border: none; cursor: pointer;
-    }
-    .btn-wa:hover { background: #1dba5a; }
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+#footer {
+  background: var(--color-text-primary);
+  padding: 4rem 0 2rem;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+.ft-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 1.3rem;
+  color: var(--color-white); letter-spacing: 0.01em;
+}
+.ft-wm-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300; font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-top: 0.2rem;
+}
+.ft-addr {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 300;
+  color: rgba(255,255,255,0.45); line-height: 1.7;
+  margin-top: 1rem;
+}
+.ft-col-h {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 1rem;
+}
+.ft-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.ft-list li {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 300;
+  color: rgba(255,255,255,0.6); line-height: 1.5;
+  transition: color 0.2s ease;
+}
+.ft-list li a {
+  color: rgba(255,255,255,0.6);
+  transition: color 0.2s ease;
+}
+.ft-list li a:hover { color: var(--color-white); }
+.ft-emergency-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: 1.4rem;
+  color: var(--color-white); margin-top: 0.25rem;
+}
+.ft-emergency-hrs {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 300;
+  color: rgba(255,255,255,0.45); margin-top: 0.25rem;
+}
+.ft-wa-link {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem; font-weight: 300;
+  color: rgba(255,255,255,0.6); margin-top: 1.5rem;
+  transition: color 0.2s ease; text-decoration: none;
+}
+.ft-wa-link:hover { color: var(--color-white); }
+.ft-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 3rem; padding-top: 1.5rem;
+}
+.ft-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 300;
+  color: rgba(255,255,255,0.3);
+}
 
-    /* ===================== FACILITIES ===================== */
-    #facilities { background: var(--teal-dark); }
-    #facilities .section-heading { color: white; }
-    #facilities .section-sub { color: rgba(255,255,255,0.68); }
-    .facilities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 20px; }
-    .fac-card {
-      background: rgba(255,255,255,0.07); border-radius: 12px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1); transition: var(--tr);
-    }
-    .fac-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(0,0,0,0.32); }
-    .fac-photo { height: 0; padding-bottom: 56.25%; position: relative; overflow: hidden; }
-    .fac-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-    .fac-card:hover .fac-photo img { transform: scale(1.06); }
-    .fac-icon-area { display: flex; align-items: center; justify-content: center; height: 120px; font-size: 3rem; background: rgba(255,255,255,0.05); }
-    .fac-info { padding: 16px 18px; }
-    .fac-info h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: white; margin-bottom: 5px; }
-    .fac-info p  { font-size: 0.81rem; color: rgba(255,255,255,0.58); }
+/* ==========================================================
+   WHATSAPP FLOAT
+   ========================================================== */
+#wa-float {
+  position: fixed; bottom: 1.5rem; right: 1.5rem;
+  z-index: 150; width: 52px; height: 52px;
+  border-radius: 50%; background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease; text-decoration: none;
+}
+#wa-float.show { opacity: 1; pointer-events: auto; }
 
-    /* ===================== CONTACT ===================== */
-    #contact { background: var(--bg-light); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 40px; }
-    .contact-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
-    .contact-item .ico { font-size: 1.45rem; flex-shrink: 0; width: 38px; text-align: center; }
-    .contact-item .clabel { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); font-weight: 600; }
-    .contact-item .cvalue { font-size: 0.94rem; color: var(--text-dark); margin-top: 2px; line-height: 1.5; }
-    .hours-pill { display: inline-block; background: var(--teal); color: white; padding: 5px 14px; border-radius: 4px; font-weight: 700; font-size: 0.88rem; }
-    .wa-big {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      padding: 15px 28px; background: #25d366; color: white;
-      border-radius: 8px; font-size: 1.02rem; font-weight: 700;
-      text-decoration: none; margin-top: 26px;
-      animation: pulse-wa 2.2s ease-in-out infinite; transition: var(--tr);
-    }
-    @keyframes pulse-wa {
-      0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,.42); }
-      50%      { box-shadow: 0 0 0 16px rgba(37,211,102,0); }
-    }
-    .wa-big:hover { background: #1dba5a; transform: translateY(-2px); }
-    .map-wrap { border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
-    .map-wrap iframe { width: 100%; height: 390px; border: none; display: block; }
+/* ==========================================================
+   SCROLL ANIMATIONS
+   ========================================================== */
+.afu {
+  opacity: 0; transform: translateY(24px);
+  transition:
+    opacity  0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--sd, 0) * 0.1s);
+}
+.afi {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+  transition-delay: calc(var(--sd, 0) * 0.1s);
+}
+.afu.vis, .afi.vis { opacity: 1; transform: none; }
 
-    /* ===================== FOOTER ===================== */
-    #footer { background: var(--teal-dark); color: rgba(255,255,255,0.72); padding: 60px 40px 24px; }
-    .footer-divider { height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin-bottom: 50px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 44px; margin-bottom: 44px; }
-    .footer-brand-name { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.45rem; color: white; letter-spacing: 2px; }
-    .footer-brand-sub  { color: var(--gold); font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; margin: 4px 0 14px; }
-    .footer-brand-tag  { font-size: 0.84rem; line-height: 1.65; color: rgba(255,255,255,0.56); }
-    .footer-col h4 {
-      color: white; font-family: 'DM Sans', sans-serif; font-size: 0.86rem;
-      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px;
-      padding-bottom: 8px; border-bottom: 1px solid rgba(184,149,42,0.3);
-    }
-    .footer-col li { margin-bottom: 9px; }
-    .footer-col li a, .footer-col li { font-size: 0.84rem; color: rgba(255,255,255,0.6); transition: color 0.3s ease; }
-    .footer-col li a:hover { color: var(--gold); }
-    .footer-bottom {
-      text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.36);
-      padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    /* ===================== WA FLOAT ===================== */
-    .wa-float {
-      position: fixed; bottom: 28px; right: 28px;
-      width: 56px; height: 56px; background: #25d366;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.75rem; z-index: 900; text-decoration: none;
-      animation: wa-float-pulse 2.2s ease-in-out infinite; transition: transform 0.3s ease;
-    }
-    .wa-float:hover { transform: scale(1.12); }
-    @keyframes wa-float-pulse {
-      0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.5), 0 0 0 0 rgba(37,211,102,.4); }
-      50%      { box-shadow: 0 4px 20px rgba(37,211,102,.5), 0 0 0 18px rgba(37,211,102,0); }
-    }
-
-    /* ===================== RESPONSIVE ===================== */
-    @media (max-width: 1100px) {
-      .dept-grid { grid-template-columns: repeat(3,1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 820px) {
-      .section { padding: 70px 24px; }
-      #navbar { padding: 14px 24px; }
-      #navbar.scrolled { padding: 10px 24px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .hero-content { grid-template-columns: 1fr; padding: 100px 24px 80px; gap: 42px; }
-      .hero-right { order: -1; }
-      .founder-frame { width: 240px; height: 300px; }
-      .founder-hero-wrapper { animation: none; }
-      .about-grid { grid-template-columns: 1fr; }
-      .about-img-wrap { height: 300px; }
-      .founder-grid { grid-template-columns: 1fr; text-align: center; }
-      .founder-divider { background: linear-gradient(to right, transparent, var(--gold), transparent); }
-      .dept-grid { grid-template-columns: repeat(2,1fr); }
-      .contact-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .feature-cards { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .hero-stats { grid-template-columns: repeat(2,1fr); }
-      .hero-buttons { flex-direction: column; }
-      .dept-grid { grid-template-columns: repeat(2,1fr); }
-    }
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 1024px) {
+  .hero-inner  { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .about-grid  { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+@media (max-width: 768px) {
+  .nav-links   { display: none; }
+  .nav-burger  { display: flex; }
+  .hero-inner  { grid-template-columns: 1fr; padding-top: 5rem; gap: 3rem; }
+  .hero-img-col { order: -1; }
+  .hero-img-wrap { max-width: 300px; margin: 0 auto; }
+  .about-grid  { grid-template-columns: 1fr; gap: 3rem; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .spec-header { grid-template-columns: 1fr; }
+  .spec-search { width: 100%; }
+  .spec-grid   { grid-template-columns: 1fr 1fr; }
+  .doctors-grid { grid-template-columns: 1fr 1fr; }
+  .fac-grid    { grid-template-columns: 1fr; gap: 2rem; }
+  .founder-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  #doc-panel   { width: 100vw; }
+  .numbers-inner { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats  { flex-direction: column; gap: 0; }
+  .hero-stat   { padding: 1.25rem 0; border-left: none !important; border-bottom: 1px solid var(--color-border); }
+  .hero-stat:last-child { border-bottom: none; }
+}
+@media (max-width: 480px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .spec-grid     { grid-template-columns: 1fr; }
+  .doctors-grid  { grid-template-columns: 1fr; }
+  .footer-grid   { grid-template-columns: 1fr; }
+  .numbers-inner { grid-template-columns: repeat(2, 1fr); }
+}
   </style>
 </head>
-<body>
+<body class="loading">
 
-<!-- PAGE LOADER -->
-<div id="page-loader">
-  <div class="loader-title">NOVA LIFELINE</div>
-  <div class="loader-subtitle">Super Speciality Hospital</div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-wordmark">Nova Lifeline</div>
+  <div class="loader-line"></div>
 </div>
 
 <!-- WHATSAPP FLOAT -->
-<a class="wa-float" href="https://wa.me/919099005205" target="_blank" rel="noopener" title="Chat on WhatsApp">💬</a>
+<a id="wa-float" href="https://wa.me/919099005205" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.444h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.48-8.447zM12.045 21.785h-.004a9.96 9.96 0 01-5.03-1.37l-.36-.214-3.742.977.999-3.635-.236-.374a9.813 9.813 0 01-1.52-5.177c.003-5.456 4.465-9.893 9.937-9.893 2.651 0 5.14 1.03 7.01 2.895 1.87 1.865 2.9 4.343 2.899 6.979-.003 5.456-4.466 9.812-9.953 9.812zm5.457-7.364c-.299-.148-1.77-.868-2.044-.967-.274-.1-.474-.149-.673.148-.199.296-.772.967-.947 1.166-.174.198-.349.222-.647.074-.299-.149-1.262-.462-2.403-1.475-.888-.788-1.487-1.76-1.661-2.058-.174-.298-.018-.46.13-.608.134-.134.299-.347.448-.521.15-.174.199-.298.298-.497.1-.198.05-.372-.025-.521-.075-.149-.672-1.61-.921-2.205-.243-.578-.489-.5-.672-.51-.174-.008-.374-.01-.573-.01-.199 0-.522.074-.795.372-.273.297-1.044 1.018-1.044 2.479s1.069 2.876 1.218 3.074c.149.198 2.104 3.173 5.097 4.452.712.305 1.268.487 1.701.624.714.225 1.364.193 1.878.117.573-.085 1.77-.72 2.02-1.416.247-.695.247-1.29.173-1.414-.074-.124-.274-.198-.573-.347z" fill="white"/>
+  </svg>
+</a>
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">
-    <span class="nav-logo-main">NOVA LIFELINE</span>
-    <span class="nav-logo-sub">Super Speciality Hospital</span>
-  </a>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#hero" class="active">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#departments">Departments</a></li>
-    <li><a href="#doctors">Doctors</a></li>
-    <li><a href="#facilities">Facilities</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
+<!-- NAVIGATION -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-wordmark">
+      <span class="nav-wm-main">Nova Lifeline</span>
+      <span class="nav-wm-sub">Super Speciality Hospital</span>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="#hero" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#specialities">Specialities</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#facilities">Facilities</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-burger" id="nav-burger">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobile-menu">
+<div id="mob-menu">
   <a href="#hero">Home</a>
   <a href="#about">About</a>
-  <a href="#departments">Departments</a>
+  <a href="#specialities">Specialities</a>
   <a href="#doctors">Doctors</a>
   <a href="#facilities">Facilities</a>
   <a href="#contact">Contact</a>
 </div>
 
-<!-- ===== HERO ===== -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-dots"></div>
-  <div class="hero-content container">
-    <!-- LEFT: Founder -->
-    <div class="founder-hero-wrapper">
-      <div class="founder-frame">
-        <div class="founder-frame-border"></div>
-        <div class="founder-frame-bg"></div>
-        <div class="founder-frame-img">
-          <img src="images/Shabbir_Rajkotwala.jpg" alt="Dr. Shabbir H. Rajkotwala — Founder and Head Physician">
+<main>
+
+  <!-- ======================================================
+       HERO
+       ====================================================== -->
+  <section id="hero">
+    <div class="hero-inner">
+      <!-- Left -->
+      <div class="hero-left">
+        <p class="hero-eyebrow afu" style="--sd:0">Bardoli, Gujarat &mdash; Est. 2009</p>
+        <h1 class="hero-h1 afu" style="--sd:1">Advanced Care,<br>Close to Home.</h1>
+        <p class="hero-desc afu" style="--sd:2">Nova Lifeline Super Speciality Hospital brings 27 specialities and 31 specialists together under one roof in Bardoli &mdash; so you never have to leave your city for world-class medical care.</p>
+        <div class="hero-actions afu" style="--sd:3">
+          <a href="https://wa.me/919099005205" target="_blank" rel="noopener" class="btn-primary">Book Appointment</a>
+          <a href="#specialities" class="link-secondary">Explore Specialities &nbsp;&rarr;</a>
+        </div>
+        <div class="hero-stats afu" style="--sd:4">
+          <div class="hero-stat">
+            <div class="hero-stat-num">31+</div>
+            <div class="hero-stat-lbl">Specialists</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">27</div>
+            <div class="hero-stat-lbl">Specialities</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">16+</div>
+            <div class="hero-stat-lbl">Years of Service</div>
+          </div>
         </div>
       </div>
-      <div class="founder-caption">
-        <h3>Dr. Shabbir H. Rajkotwala</h3>
-        <p class="sub">MD Medicine &nbsp;·&nbsp; Founder and Head Physician &nbsp;·&nbsp; 16+ Years of Excellence</p>
-        <p class="quote">"Bringing world-class healthcare to your doorstep"</p>
-      </div>
-    </div>
-    <!-- RIGHT: Hospital Info -->
-    <div class="hero-right">
-      <h1 class="hero-title" id="hero-title"></h1>
-      <div class="hero-sub">Super Speciality Hospital</div>
-      <div class="hero-tagline" id="hero-tagline"></div>
-      <div class="hero-stats">
-        <div class="stat-box" data-val="31" data-suf="+"><div class="stat-number" id="sn0">0</div><div class="stat-label">Doctors</div></div>
-        <div class="stat-box" data-val="50" data-suf=""><div class="stat-number"  id="sn1">0</div><div class="stat-label">Beds</div></div>
-        <div class="stat-box" data-val="27" data-suf=""><div class="stat-number"  id="sn2">0</div><div class="stat-label">Specialities</div></div>
-        <div class="stat-box" data-val="16" data-suf="+"><div class="stat-number" id="sn3">0</div><div class="stat-label">Years</div></div>
-      </div>
-      <div class="hero-buttons">
-        <a href="https://wa.me/919099005205" target="_blank" rel="noopener" class="btn btn-gold" id="btn-book">📅 Book Appointment</a>
-        <a href="#departments" class="btn btn-outline-white" id="btn-dept">View Departments</a>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-arrow" id="scroll-arrow">↓</div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section id="about" class="section">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-img-wrap fade-left" id="about-img-wrap">
-        <img src="images/hospital_building.jpg" alt="Nova Lifeline Super Speciality Hospital Building — Bardoli" id="about-img">
-      </div>
-      <div class="about-text fade-right">
-        <h2 class="section-heading" data-heading>About Nova Lifeline</h2>
-        <p class="section-sub">Serving Bardoli and South Gujarat for over 16 years</p>
-        <p>Nova Lifeline Super Speciality Hospital has been serving the people of Bardoli and South Gujarat for over 16 years. What began as Lifeline Hospital under Dr. Shabbir H. Rajkotwala has grown into a full super-speciality centre — bringing world-class medical expertise to your doorstep. No need to travel to the city — everything is here.</p>
-        <div class="feature-cards">
-          <div class="feature-card fade-up" style="transition-delay:0ms"><div class="f-icon">🚨</div><h4>24x7 Emergency Care</h4><p>Always ready for emergencies</p></div>
-          <div class="feature-card fade-up" style="transition-delay:100ms"><div class="f-icon">🏥</div><h4>10-Bed Level-3 ICU</h4><p>Advanced critical care monitoring</p></div>
-          <div class="feature-card fade-up" style="transition-delay:200ms"><div class="f-icon">🔬</div><h4>Class 100 Operation Theatre</h4><p>International standard OT</p></div>
-          <div class="feature-card fade-up" style="transition-delay:300ms"><div class="f-icon">🚑</div><h4>On-Call Ambulance</h4><p>Emergency transport anytime</p></div>
+      <!-- Right -->
+      <div class="hero-img-col afi" style="--sd:1">
+        <div class="hero-img-wrap">
+          <div class="img-fallback">SR</div>
+          <img src="images/Shabbir_Rajkotwala.jpg" alt="Dr. Shabbir H. Rajkotwala, Founder">
+        </div>
+        <div class="hero-img-cap">
+          <div class="hero-cap-name">Dr. Shabbir H. Rajkotwala</div>
+          <div class="hero-cap-role">MD Medicine &mdash; Founder and Head Physician</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== FOUNDER SPOTLIGHT ===== -->
-<section id="founder" class="section">
-  <div class="container">
-    <div class="founder-grid">
-      <div class="founder-spotlight-left fade-left">
-        <div class="founder-circle">
-          <img src="images/Shabbir_Rajkotwala.jpg" alt="Dr. Shabbir H. Rajkotwala — Founder">
-        </div>
-        <div class="founder-id">
-          <h3>Dr. Shabbir H. Rajkotwala</h3>
-          <div class="qual">MD Medicine</div>
-          <div class="title">Founder and Head Physician</div>
-        </div>
+  <!-- ======================================================
+       NUMBERS BAR
+       ====================================================== -->
+  <section id="numbers">
+    <div class="numbers-inner">
+      <div class="num-item">
+        <div class="num-val" data-target="31">0</div>
+        <div class="num-lbl">Specialist Doctors</div>
       </div>
-      <div class="founder-msg fade-right">
-        <div class="founder-label">✦ A Message From Our Founder</div>
-        <h2>Our Vision for Healthcare in Bardoli</h2>
-        <p>For over 16 years, my mission has been simple — to ensure that no patient from Bardoli or South Gujarat has to travel far for quality medical care. Nova Lifeline was built on the belief that advanced super-speciality treatment should be accessible to everyone, right here in their own city. Today, with a team of 31 dedicated specialists and world-class facilities, we stand by that promise every single day.</p>
-        <div class="founder-divider"></div>
-        <div class="founder-sig">— Dr. Shabbir H. Rajkotwala, MD Medicine</div>
+      <div class="num-item">
+        <div class="num-val" data-target="50">0</div>
+        <div class="num-lbl">Hospital Beds</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== DEPARTMENTS ===== -->
-<section id="departments" class="section">
-  <div class="container">
-    <h2 class="section-heading" data-heading>Our Specialities</h2>
-    <p class="section-sub">27 Super-Speciality Departments Under One Roof</p>
-    <div class="dept-grid" id="dept-grid"></div>
-  </div>
-</section>
-
-<!-- ===== DOCTORS ===== -->
-<section id="doctors" class="section">
-  <div class="container">
-    <h2 class="section-heading" data-heading>Meet Our Doctors</h2>
-    <p class="section-sub">31 Highly Qualified Specialists — All Under One Roof</p>
-    <div class="doctors-controls">
-      <input type="text" class="search-bar" id="doc-search" placeholder="Search doctors by name…">
-      <button class="btn-reset" id="btn-reset">All Doctors</button>
-      <div class="filter-badge" id="filter-badge">
-        <span id="filter-label"></span>
-        <button id="filter-clear">✕</button>
+      <div class="num-item">
+        <div class="num-val" data-target="27">0</div>
+        <div class="num-lbl">Departments</div>
+      </div>
+      <div class="num-item">
+        <div class="num-val" data-target="16">0</div>
+        <div class="num-lbl">Years Serving</div>
       </div>
     </div>
-    <div class="doctors-grid" id="doctors-grid"></div>
-  </div>
-</section>
+  </section>
 
-<!-- DOCTOR PANEL OVERLAY -->
-<div class="panel-overlay" id="panel-overlay"></div>
+  <!-- ======================================================
+       ABOUT
+       ====================================================== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="afu">
+          <p class="lbl">Our Story</p>
+          <h2 class="sec-heading">A Hospital Built<br>on a Promise.</h2>
+          <hr class="about-rule">
+          <div class="about-body">
+            <p>What began as Lifeline Hospital under Dr. Shabbir H. Rajkotwala has grown into Nova Lifeline Super Speciality Hospital &mdash; a comprehensive centre bringing together the finest specialists across 27 disciplines. Our mission has always been simple: ensure that no patient in Bardoli or South Gujarat has to travel to a distant city for quality care.</p>
+            <p>Today, with 31 dedicated specialists, a 10-bed Level-3 ICU, Class 100 operation theatres, and a full diagnostic wing, we deliver on that promise every single day.</p>
+          </div>
+        </div>
+        <div class="afu" style="--sd:1">
+          <div class="about-img-wrap">
+            <img src="images/hospital_building.jpg" alt="Nova Lifeline Super Speciality Hospital, Bardoli">
+          </div>
+          <div class="about-meta" style="margin-top:0">
+            <div class="about-meta-item">
+              <div class="about-meta-lbl">Location</div>
+              <div class="about-meta-val">Bardoli, Surat District, Gujarat</div>
+            </div>
+            <div class="about-meta-item">
+              <div class="about-meta-lbl">Emergency</div>
+              <div class="about-meta-val">24 Hours &mdash; 7 Days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SERVICES STRIP
+       ====================================================== -->
+  <section id="services">
+    <div class="container">
+      <div class="services-top afu">
+        <p class="lbl">What We Offer</p>
+        <h2 class="sec-heading">Comprehensive Care<br>Under One Roof</h2>
+      </div>
+      <div class="services-grid">
+        <div class="svc-cell afu" style="--sd:0">
+          <div class="svc-title">Critical Care</div>
+          <div class="svc-desc">10-bed Level-3 ICU with round-the-clock intensivist coverage and advanced monitoring.</div>
+        </div>
+        <div class="svc-cell afu" style="--sd:1">
+          <div class="svc-title">Advanced Surgery</div>
+          <div class="svc-desc">Class 100 modular operation theatres equipped for laparoscopic, orthopaedic, urological, and reconstructive procedures.</div>
+        </div>
+        <div class="svc-cell afu" style="--sd:2">
+          <div class="svc-title">Diagnostics</div>
+          <div class="svc-desc">In-house CT scan, X-ray, sonography, ECG, Echo 2D, NCS, EMG, EEG, and a full pathology laboratory.</div>
+        </div>
+        <div class="svc-cell afu" style="--sd:3">
+          <div class="svc-title">Emergency and Trauma</div>
+          <div class="svc-desc">24x7 emergency department with on-call specialists and ambulance services for immediate intervention.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SPECIALITIES
+       ====================================================== -->
+  <section id="specialities">
+    <div class="container">
+      <div class="spec-header afu">
+        <div>
+          <p class="lbl">Departments</p>
+          <h2 class="sec-heading">27 Medical Specialities</h2>
+        </div>
+        <input type="text" class="spec-search" id="spec-search" placeholder="Search specialities...">
+      </div>
+      <div class="spec-tabs" id="spec-tabs">
+        <button class="spec-tab active" data-cat="All">All</button>
+        <button class="spec-tab" data-cat="Surgery">Surgery</button>
+        <button class="spec-tab" data-cat="Medicine">Medicine</button>
+        <button class="spec-tab" data-cat="Diagnostics">Diagnostics</button>
+        <button class="spec-tab" data-cat="Emergency">Emergency</button>
+      </div>
+      <div class="spec-grid" id="spec-grid"></div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       DOCTORS
+       ====================================================== -->
+  <section id="doctors">
+    <div class="container">
+      <div class="afu">
+        <p class="lbl">Our Team</p>
+        <h2 class="sec-heading">Meet the Specialists</h2>
+        <p class="doc-intro">Our physicians are specialists in their fields, bringing decades of combined experience to every consultation and procedure.</p>
+        <div class="doc-filter-state" id="doc-filter-state">
+          Showing specialists in <span id="doc-filter-name"></span>
+          <span class="doc-filter-clear" id="doc-clear">Clear &times;</span>
+        </div>
+      </div>
+      <div class="doctors-grid" id="doctors-grid"></div>
+    </div>
+  </section>
+
+</main>
+
 <!-- DOCTOR PANEL -->
-<div id="doctor-panel">
-  <div class="panel-header">
-    <button class="panel-close" id="panel-close">✕</button>
-    <div class="panel-photo"><img src="" alt="" id="pp-photo"></div>
-    <h2 class="panel-name" id="pp-name"></h2>
-    <div class="panel-qual" id="pp-qual"></div>
-    <div class="panel-spec" id="pp-spec"></div>
+<div id="panel-overlay"></div>
+<div id="doc-panel">
+  <div class="panel-close-row">
+    <button class="panel-x" id="panel-close">&times;</button>
   </div>
   <div class="panel-body">
-    <div class="panel-exp" id="pp-exp"></div>
-    <div class="panel-visit"><span class="ico">📅</span><p id="pp-visit"></p></div>
-    <div class="panel-sec-title">About</div>
-    <p class="panel-about" id="pp-about"></p>
-    <div class="panel-sec-title">Services Offered</div>
-    <ul class="panel-services" id="pp-services"></ul>
-    <div id="pp-ach-wrap" style="display:none">
-      <div class="panel-sec-title">Key Achievements</div>
-      <div class="panel-ach" id="pp-ach"></div>
+    <div class="panel-img">
+      <div class="panel-img-init" id="pp-init"></div>
+      <img src="" alt="" id="pp-img">
     </div>
-    <div class="panel-actions">
-      <a href="https://wa.me/919099005205" target="_blank" rel="noopener" class="btn-wa">💬 Book Appointment on WhatsApp</a>
-      <button class="btn btn-outline-teal" id="panel-back">← Back to All Doctors</button>
+    <p class="panel-dept-lbl" id="pp-dept"></p>
+    <h2 class="panel-name" id="pp-name"></h2>
+    <p class="panel-qual" id="pp-qual"></p>
+    <div class="panel-avail-wrap">
+      <span class="panel-avail-pre">Available: </span>
+      <span class="panel-avail" id="pp-avail"></span>
+    </div>
+    <hr class="panel-div">
+    <p class="panel-sec-lbl">About</p>
+    <p class="panel-about" id="pp-about"></p>
+    <div class="panel-svc-wrap">
+      <p class="panel-sec-lbl">Services</p>
+      <ul class="panel-svc-list" id="pp-svc"></ul>
+    </div>
+    <div class="panel-ach-wrap" id="pp-ach-wrap">
+      <p class="panel-sec-lbl">Achievements</p>
+      <ul class="panel-ach-list" id="pp-ach"></ul>
+    </div>
+    <div class="panel-cta-wrap">
+      <a href="https://wa.me/919099005205" target="_blank" rel="noopener" class="panel-book">Book an Appointment</a>
     </div>
   </div>
 </div>
 
-<!-- ===== FACILITIES ===== -->
-<section id="facilities" class="section">
+<!-- ======================================================
+     FACILITIES
+     ====================================================== -->
+<section id="facilities">
   <div class="container">
-    <h2 class="section-heading" data-heading>World-Class Facilities</h2>
-    <p class="section-sub">Everything you need — all in one place</p>
-    <div class="facilities-grid" id="facilities-grid"></div>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section id="contact" class="section">
-  <div class="container">
-    <h2 class="section-heading" data-heading>Get In Touch</h2>
-    <div class="contact-grid">
-      <div class="fade-left">
-        <div class="contact-item">
-          <span class="ico">📍</span>
-          <div><div class="clabel">Address</div><div class="cvalue">Imperial Business Center, Nr. Dhiraj Sons,<br>Bardoli Kadodara Road, Surat, Gujarat 394601</div></div>
+    <div class="afu">
+      <p class="lbl">Infrastructure</p>
+      <h2 class="sec-heading">Built for Modern Medicine</h2>
+      <p class="fac-intro">Every department at Nova Lifeline is equipped with the technology and environment required to deliver outcomes that match the best hospitals in any major city.</p>
+    </div>
+    <div class="fac-grid">
+      <div class="afu">
+        <div class="fac-list-item">
+          <div class="fac-item-name">10-Bed Level-3 ICU</div>
+          <div class="fac-item-desc">Advanced critical care unit with continuous monitoring and intensivist coverage around the clock.</div>
         </div>
-        <div class="contact-item">
-          <span class="ico">📞</span>
-          <div><div class="clabel">Phone</div><div class="cvalue">02622-226695</div></div>
+        <div class="fac-list-item">
+          <div class="fac-item-name">Class 100 Modular OT</div>
+          <div class="fac-item-desc">International standard operation theatres with laminar airflow systems for sterile surgical environments.</div>
         </div>
-        <div class="contact-item">
-          <span class="ico">📱</span>
-          <div><div class="clabel">Mobile</div><div class="cvalue">99259 06952</div></div>
+        <div class="fac-list-item">
+          <div class="fac-item-name">CT Scan and Imaging</div>
+          <div class="fac-item-desc">High-resolution CT scanning alongside digital X-ray and sonography for precise diagnostic imaging.</div>
         </div>
-        <div class="contact-item">
-          <span class="ico">💬</span>
-          <div><div class="clabel">WhatsApp</div><div class="cvalue">90990 05205</div></div>
+        <div class="fac-list-item">
+          <div class="fac-item-name">Pathology Laboratory</div>
+          <div class="fac-item-desc">Comprehensive in-house laboratory for all routine and specialised blood and diagnostic tests.</div>
         </div>
-        <div class="contact-item">
-          <span class="ico">✉️</span>
-          <div><div class="clabel">Email</div><div class="cvalue">Novalifeline6@gmail.com</div></div>
+        <div class="fac-list-item">
+          <div class="fac-item-name">Dialysis Centre</div>
+          <div class="fac-item-desc">Full nephrocare unit offering scheduled and emergency dialysis sessions for renal patients.</div>
         </div>
-        <div class="contact-item">
-          <span class="ico">🕐</span>
-          <div><div class="clabel">Hours</div><div class="cvalue"><span class="hours-pill">Open 24 × 7</span></div></div>
+        <div class="fac-list-item">
+          <div class="fac-item-name">24-Hour Pharmacy</div>
+          <div class="fac-item-desc">On-site pharmacy stocked with all essential and speciality medications, open around the clock.</div>
         </div>
-        <a href="https://wa.me/919099005205" target="_blank" rel="noopener" class="wa-big">💬 Chat With Us on WhatsApp</a>
       </div>
-      <div class="fade-right">
-        <div class="map-wrap">
-          <iframe
-            src="https://www.google.com/maps?q=Bardoli,+Surat+District,+Gujarat+394601,+India&output=embed"
-            allowfullscreen loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Nova Lifeline Hospital — Bardoli, Gujarat">
-          </iframe>
+      <div class="fac-imgs afu" style="--sd:1">
+        <div class="fac-img-item">
+          <div class="fac-img-wrap">
+            <img src="images/facility_icu.jpg" alt="ICU — Nova Lifeline">
+          </div>
+          <p class="fac-img-cap">ICU</p>
+        </div>
+        <div class="fac-img-item">
+          <div class="fac-img-wrap">
+            <img src="images/facility_ot.jpg" alt="Operation Theatre — Nova Lifeline">
+          </div>
+          <p class="fac-img-cap">Operation Theatre</p>
+        </div>
+        <div class="fac-img-item">
+          <div class="fac-img-wrap">
+            <img src="images/facility_reception.jpg" alt="Reception — Nova Lifeline">
+          </div>
+          <p class="fac-img-cap">Reception</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer id="footer" class="fade-up">
+<!-- ======================================================
+     FOUNDER
+     ====================================================== -->
+<section id="founder">
   <div class="container">
-    <div class="footer-divider"></div>
+    <div class="founder-grid">
+      <div class="afi">
+        <div class="founder-img-wrap">
+          <div class="founder-img-init">SR</div>
+          <img src="images/Shabbir_Rajkotwala.jpg" alt="Dr. Shabbir H. Rajkotwala, Founder">
+        </div>
+      </div>
+      <div class="afu" style="--sd:1">
+        <p class="founder-eyebrow">From the Founder</p>
+        <h2 class="founder-h">Our commitment has always been to the patient first.</h2>
+        <p class="founder-body">For over 16 years, my mission has been simple &mdash; to ensure that no patient from Bardoli or South Gujarat has to travel far for quality medical care. Nova Lifeline was built on the belief that advanced super-speciality treatment should be accessible to everyone, right here in their own city. Today, with a team of 31 dedicated specialists and world-class facilities, we stand by that promise every single day.</p>
+        <hr class="founder-div">
+        <div class="founder-attr-name">Dr. Shabbir H. Rajkotwala</div>
+        <div class="founder-attr-role">MD Medicine, Founder and Head Physician</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     CONTACT
+     ====================================================== -->
+<section id="contact">
+  <div class="container">
+    <div class="afu">
+      <p class="lbl">Find Us</p>
+      <h2 class="sec-heading">Get In Touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="afu">
+        <div class="contact-row">
+          <span class="c-lbl">Address</span>
+          <span class="c-val">Imperial Business Center, Nr. Dhiraj Sons, Bardoli Kadodara Road, Surat, Gujarat 394601</span>
+        </div>
+        <div class="contact-row">
+          <span class="c-lbl">Phone</span>
+          <span class="c-val">02622-226695</span>
+        </div>
+        <div class="contact-row">
+          <span class="c-lbl">Mobile</span>
+          <span class="c-val">99259 06952</span>
+        </div>
+        <div class="contact-row">
+          <span class="c-lbl">WhatsApp</span>
+          <span class="c-val">90990 05205</span>
+        </div>
+        <div class="contact-row">
+          <span class="c-lbl">Email</span>
+          <span class="c-val">Novalifeline6@gmail.com</span>
+        </div>
+        <div class="contact-row">
+          <span class="c-lbl">Hours</span>
+          <span class="c-val">Open 24 hours, 7 days</span>
+        </div>
+        <a href="https://wa.me/919099005205" target="_blank" rel="noopener" class="btn-wa-contact">Message Us on WhatsApp</a>
+      </div>
+      <div class="afu" style="--sd:1">
+        <iframe
+          class="contact-map"
+          src="https://www.google.com/maps?q=Bardoli,+Surat+District,+Gujarat+394601&output=embed"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Nova Lifeline Hospital Location">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     FOOTER
+     ====================================================== -->
+<footer id="footer">
+  <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand-name">NOVA LIFELINE</div>
-        <div class="footer-brand-sub">Super Speciality Hospital</div>
-        <div class="footer-brand-tag">A Single Destination for Advanced Super-Speciality Care.<br>Serving Bardoli and South Gujarat since 2008.</div>
+        <div class="ft-wordmark">Nova Lifeline</div>
+        <div class="ft-wm-sub">Super Speciality Hospital</div>
+        <p class="ft-addr">Imperial Business Center, Bardoli Kadodara Road,<br>Surat, Gujarat 394601</p>
       </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#departments">Departments</a></li>
-          <li><a href="#doctors">Our Doctors</a></li>
-          <li><a href="#facilities">Facilities</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Top Departments</h4>
-        <ul>
+      <div>
+        <div class="ft-col-h">Specialities</div>
+        <ul class="ft-list">
           <li>Internal Medicine</li>
-          <li>Orthopaedics</li>
+          <li>Orthopaedics and Joint Replacement</li>
           <li>Cardiology</li>
-          <li>Nephrology</li>
           <li>Neurology</li>
-          <li>Critical Care ICU</li>
+          <li>Nephrology and Renal Care</li>
+          <li>Critical Care and ICU</li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li>Bardoli Kadodara Road, Surat</li>
-          <li>Gujarat 394601</li>
+      <div>
+        <div class="ft-col-h">Contact</div>
+        <ul class="ft-list">
           <li>02622-226695</li>
           <li>99259 06952</li>
           <li>Novalifeline6@gmail.com</li>
-          <li style="color:var(--gold);font-weight:700;">Open 24 × 7</li>
+          <li>Open 24 hours, 7 days</li>
         </ul>
       </div>
+      <div>
+        <div class="ft-col-h">Emergency</div>
+        <div class="ft-emergency-num">02622-226695</div>
+        <div class="ft-emergency-hrs">Available 24 hours</div>
+        <a href="https://wa.me/919099005205" target="_blank" rel="noopener" class="ft-wa-link">Message on WhatsApp &rarr;</a>
+      </div>
     </div>
-    <div class="footer-bottom">© 2025 Nova Lifeline Super Speciality Hospital. All Rights Reserved. Bardoli Gujarat.</div>
+    <div class="ft-bottom">
+      <p class="ft-copy">&copy; 2025 Nova Lifeline Super Speciality Hospital. All rights reserved.</p>
+    </div>
   </div>
 </footer>
 
-<!-- ============================= JAVASCRIPT ============================= -->
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
 <script>
-/* =========================================================
+/* ============================================================
    DOCTOR DATA
-   ========================================================= */
+   ============================================================ */
 const doctors = [
   {
-    name: "Dr. Shabbir H. Rajkotwala",
-    photo: "images/Shabbir_Rajkotwala.jpg",
-    qualification: "MD Medicine",
-    specialization: "Physician and Internal Medicine Specialist — Head of Hospital",
-    visiting: "24 x 7 Always Available",
-    departments: ["Internal Medicine"],
-    experience: "16+ Years",
-    about: "Dr. Shabbir H. Rajkotwala is the founder and head of Nova Lifeline Super Speciality Hospital. With over 16 years of experience in internal medicine, he has been the cornerstone of healthcare in Bardoli. His vision created Nova Lifeline — a hospital that brings super-speciality care to South Gujarat without patients needing to travel to bigger cities.",
-    services: ["General Internal Medicine","Diagnosis and management of complex medical conditions","Chronic disease management — Diabetes, Hypertension, Thyroid","Fever, infections and acute illness treatment","Pre-operative medical fitness evaluation","Overall patient care and coordination"],
-    achievements: []
+    name:"Dr. Shabbir H. Rajkotwala",
+    photo:"images/Shabbir_Rajkotwala.jpg",
+    qualification:"MD Medicine",
+    specialization:"Physician and Internal Medicine Specialist — Head of Hospital",
+    visiting:"24 x 7 Always Available",
+    departments:["Internal Medicine"],
+    about:"Dr. Shabbir H. Rajkotwala is the founder and head of Nova Lifeline Super Speciality Hospital. With over 16 years of experience in internal medicine, he has been the cornerstone of healthcare in Bardoli. His vision created Nova Lifeline — a hospital that brings super-speciality care to South Gujarat without patients needing to travel to bigger cities.",
+    services:["General Internal Medicine","Diagnosis and management of complex medical conditions","Chronic disease management — Diabetes, Hypertension, Thyroid","Fever, infections and acute illness treatment","Pre-operative medical fitness evaluation","Overall patient care and coordination"],
+    achievements:[]
   },
   {
-    name: "Dr. Chirag V. Thakkar",
-    photo: "images/Chirag_Thakkar.jpg",
-    qualification: "MBBS, MS, F.KUMC, F.DITO",
-    specialization: "Joint Replacement, Trauma, Arthroscopy and Joint Preservation Surgeon",
-    visiting: "Every Saturday and Sunday (once in 15 days) — 12:30 PM to 2:30 PM",
-    departments: ["Orthopaedics and Joint Replacement"],
-    experience: "19 Years",
-    about: "Dr. Chirag V. Thakkar is one of the most experienced joint replacement surgeons in Gujarat, having trained across South Korea, Singapore, New Delhi, and Mumbai. He brings the trusted surgical expertise of Vadodara to the people of Bardoli. With 19 years of experience, he has performed over 15,000 orthopaedic procedures.",
-    services: ["Total Hip Replacement Primary and Revision","Total Knee Replacement Primary and Complex","Arthroscopy — Knee, Shoulder and Hip","Trauma and accident surgery","Joint Preservation procedures","Stem Cell therapy in Orthopaedics"],
-    achievements: ["6000+ Primary Hip Replacements","500+ Revision Hip Replacements","4000+ Knee Replacements","15000+ Total Orthopaedic Cases"]
+    name:"Dr. Chirag V. Thakkar",
+    photo:"images/Chirag_Thakkar.jpg",
+    qualification:"MBBS, MS, F.KUMC, F.DITO",
+    specialization:"Joint Replacement, Trauma, Arthroscopy and Joint Preservation Surgeon",
+    visiting:"Every Saturday and Sunday (once in 15 days) — 12:30 PM to 2:30 PM",
+    departments:["Orthopaedics and Joint Replacement"],
+    about:"Dr. Chirag V. Thakkar is one of the most experienced joint replacement surgeons in Gujarat, having trained across South Korea, Singapore, New Delhi, and Mumbai. He brings the trusted surgical expertise of Vadodara to the people of Bardoli. With 19 years of experience, he has performed over 15,000 orthopaedic procedures.",
+    services:["Total Hip Replacement Primary and Revision","Total Knee Replacement Primary and Complex","Arthroscopy — Knee, Shoulder and Hip","Trauma and accident surgery","Joint Preservation procedures","Stem Cell therapy in Orthopaedics"],
+    achievements:["6000+ Primary Hip Replacements","500+ Revision Hip Replacements","4000+ Knee Replacements","15000+ Total Orthopaedic Cases"]
   },
   {
-    name: "Dr. Anas Delair",
-    photo: "images/Anas_Delair.jpg",
-    qualification: "MBBS, MS Orthopaedics",
-    specialization: "Consultant Orthopaedic, Trauma, Spine and Joint Replacement Surgeon",
-    visiting: "365 Days — 24×7 Emergency Orthopaedic Services",
-    departments: ["Orthopaedics and Joint Replacement","Spine and Trauma Surgery"],
-    experience: "Orthopaedics Specialist",
-    about: "Dr. Anas Delair is a dedicated Consultant Orthopaedic Surgeon specializing in advanced joint and spine care. He offers round-the-clock emergency orthopaedic services — 365 days a year — ensuring patients facing fractures, accidents, or sudden orthopaedic emergencies receive immediate expert care without delay.",
-    services: ["Trauma and fracture surgery","Total Knee Replacement","Total Hip Replacement","Spine surgery and spine-related disease treatment","Arthroscopy — Knee and Shoulder","Sports injury treatment","Slip disc and chronic back pain management","Osteoarthritis and degenerative joint disease treatment"],
-    achievements: []
+    name:"Dr. Anas Delair",
+    photo:"images/Anas_Delair.jpg",
+    qualification:"MBBS, MS Orthopaedics",
+    specialization:"Consultant Orthopaedic, Trauma, Spine and Joint Replacement Surgeon",
+    visiting:"365 Days — 24x7 Emergency Orthopaedic Services",
+    departments:["Orthopaedics and Joint Replacement","Spine and Trauma Surgery"],
+    about:"Dr. Anas Delair is a dedicated Consultant Orthopaedic Surgeon specializing in advanced joint and spine care. He offers round-the-clock emergency orthopaedic services — 365 days a year — ensuring patients facing fractures, accidents, or sudden orthopaedic emergencies receive immediate expert care without delay.",
+    services:["Trauma and fracture surgery","Total Knee Replacement","Total Hip Replacement","Spine surgery and spine-related disease treatment","Arthroscopy — Knee and Shoulder","Sports injury treatment","Slip disc and chronic back pain management","Osteoarthritis and degenerative joint disease treatment"],
+    achievements:[]
   },
   {
-    name: "Dr. Hardik Hadiya",
-    photo: "images/Hardik_Hadiya.jpg",
-    qualification: "MBBS, MS",
-    specialization: "Orthopaedic Surgeon and Trauma Specialist",
-    visiting: "Daily — 12:30 PM to 2:30 PM",
-    departments: ["Orthopaedics and Joint Replacement","Spine and Trauma Surgery"],
-    experience: "Orthopaedics and Trauma",
-    about: "Dr. Hardik Hadiya is a qualified Orthopaedic Surgeon and Trauma Specialist available every single day at Nova Lifeline. He is the first point of contact for patients with bone fractures, joint pain, and sports injuries — providing consistent and reliable daily orthopaedic care.",
-    services: ["Bone fracture treatment and trauma management","Joint pain diagnosis and treatment","Sports injuries","Post-accident orthopaedic care","General orthopaedic consultations","Referral for advanced joint replacement surgery"],
-    achievements: []
+    name:"Dr. Hardik Hadiya",
+    photo:"images/Hardik_Hadiya.jpg",
+    qualification:"MBBS, MS",
+    specialization:"Orthopaedic Surgeon and Trauma Specialist",
+    visiting:"Daily — 12:30 PM to 2:30 PM",
+    departments:["Orthopaedics and Joint Replacement","Spine and Trauma Surgery"],
+    about:"Dr. Hardik Hadiya is a qualified Orthopaedic Surgeon and Trauma Specialist available every single day at Nova Lifeline. He is the first point of contact for patients with bone fractures, joint pain, and sports injuries — providing consistent and reliable daily orthopaedic care.",
+    services:["Bone fracture treatment and trauma management","Joint pain diagnosis and treatment","Sports injuries","Post-accident orthopaedic care","General orthopaedic consultations","Referral for advanced joint replacement surgery"],
+    achievements:[]
   },
   {
-    name: "Dr. Akshay S. Suratwala",
-    photo: "images/Akshay_Suratwala.jpg",
-    qualification: "MBBS, MS, ENT — Gold Medalist",
-    specialization: "Specialist ENT Surgeon — Ear, Nose and Throat",
-    visiting: "Every Wednesday — 9:00 AM to 10:30 AM",
-    departments: ["ENT Ear Nose and Throat"],
-    experience: "Gold Medalist",
-    about: "Dr. Akshay S. Suratwala is a Gold Medalist ENT surgeon trained in the latest endoscopic surgical techniques. He performs complex surgeries with minimal discomfort and faster recovery. From ear drum repair to sinus surgery, Dr. Akshay brings top-tier ENT care to Bardoli.",
-    services: ["Foreign body removal from the ear","Surgery for ear discharge","Hearing loss diagnosis and machine-assisted treatment","Vertigo diagnosis and treatment","Ear drum repair via Endoscopic Tympanoplasty — no stitches","Nasal allergies, polyps and sinus infections","Breathing problem diagnosis and treatment","Sinus disease endoscopic surgery","Nasal septum correction surgery","Thyroid, tonsils and throat lump treatment","Foreign body removal from throat","Swallowing problem treatment","Endoscopic throat surgeries"],
-    achievements: []
+    name:"Dr. Akshay S. Suratwala",
+    photo:"images/Akshay_Suratwala.jpg",
+    qualification:"MBBS, MS, ENT — Gold Medalist",
+    specialization:"Specialist ENT Surgeon — Ear, Nose and Throat",
+    visiting:"Every Wednesday — 9:00 AM to 10:30 AM",
+    departments:["ENT Ear Nose and Throat"],
+    about:"Dr. Akshay S. Suratwala is a Gold Medalist ENT surgeon trained in the latest endoscopic surgical techniques. He performs complex surgeries with minimal discomfort and faster recovery. From ear drum repair to sinus surgery, Dr. Akshay brings top-tier ENT care to Bardoli.",
+    services:["Foreign body removal from the ear","Surgery for ear discharge","Hearing loss diagnosis and machine-assisted treatment","Vertigo diagnosis and treatment","Ear drum repair via Endoscopic Tympanoplasty — no stitches","Nasal allergies, polyps and sinus infections","Breathing problem diagnosis and treatment","Sinus disease endoscopic surgery","Nasal septum correction surgery","Thyroid, tonsils and throat lump treatment","Foreign body removal from throat","Swallowing problem treatment","Endoscopic throat surgeries"],
+    achievements:[]
   },
   {
-    name: "Dr. Nirav Gondaliya",
-    photo: "images/Nirav_Gondaliya.jpg",
-    qualification: "MBBS, MD Respiratory Medicine, IDCCM Hinduja Hospital Mumbai, FCCS USA, ACLS-BCLS Instructor India",
-    specialization: "Pulmonologist, ICU and Emergency Specialist",
-    visiting: "Every Tuesday — 5:00 PM to 7:00 PM",
-    departments: ["Pulmonology and Respiratory Medicine","Critical Care and ICU"],
-    experience: "12 Years",
-    about: "Dr. Nirav Gondaliya is a highly trained Pulmonologist and Critical Care specialist. He holds an intensive care fellowship from the prestigious Hinduja Hospital Mumbai and is certified by FCCS USA — making him one of the most internationally qualified ICU and lung specialists in South Gujarat.",
-    services: ["Asthma, Pneumonia, COPD and ARDS treatment","Pulmonary Function Test (PFT)","Pleural effusion drainage","Bronchoscopy lung examination","Complications of BP, Diabetes, Anaemia, Thyroid and Cholesterol","Paralysis, severe infections, Shock, poisoning and snakebite","ICU management and monitoring","Pre-operation fitness assessment and post-op care"],
-    achievements: []
+    name:"Dr. Nirav Gondaliya",
+    photo:"images/Nirav_Gondaliya.jpg",
+    qualification:"MBBS, MD Respiratory Medicine, IDCCM, FCCS USA",
+    specialization:"Pulmonologist, ICU and Emergency Specialist",
+    visiting:"Every Tuesday — 5:00 PM to 7:00 PM",
+    departments:["Pulmonology and Respiratory Medicine","Critical Care and ICU"],
+    about:"Dr. Nirav Gondaliya is a highly trained Pulmonologist and Critical Care specialist. He holds an intensive care fellowship from the prestigious Hinduja Hospital Mumbai and is certified by FCCS USA — making him one of the most internationally qualified ICU and lung specialists in South Gujarat.",
+    services:["Asthma, Pneumonia, COPD and ARDS treatment","Pulmonary Function Test (PFT)","Pleural effusion drainage","Bronchoscopy lung examination","Complications of BP, Diabetes, Anaemia, Thyroid and Cholesterol","Paralysis, severe infections, Shock, poisoning and snakebite","ICU management and monitoring","Pre-operation fitness assessment and post-op care"],
+    achievements:[]
   },
   {
-    name: "Dr. Ram Raksha Pal Rajput",
-    photo: "images/Ram_Rajput.jpg",
-    qualification: "MBBS, MS, FNB Minimal Access Surgery",
-    specialization: "Laparoscopic, Gastro and Bariatric Surgeon",
-    visiting: "Every Monday and Thursday — 2:00 PM to 8:00 PM",
-    departments: ["Laparoscopic and Bariatric Surgery"],
-    experience: "15 Years",
-    about: "Dr. Ram Raksha Pal Rajput is one of the most accomplished laparoscopic and bariatric surgeons in the region. With 15 years of surgical experience and expertise in minimal access surgery, patients experience less pain, smaller scars, and faster recovery.",
-    services: ["All advanced Laparoscopic Gastro-Intestinal Surgeries","Laparoscopic Hernia surgery","Laparoscopic and open surgery for GI tract cancers","Bariatric Weight Loss surgery","Endoscopy and Colonoscopy","Gall bladder, Appendix and Intestinal surgeries"],
-    achievements: ["15000+ Laparoscopic and open GI Surgeries","1000+ Bariatric Surgeries","10000+ Endoscopy and Colonoscopy procedures"]
+    name:"Dr. Ram Raksha Pal Rajput",
+    photo:"images/Ram_Rajput.jpg",
+    qualification:"MBBS, MS, FNB Minimal Access Surgery",
+    specialization:"Laparoscopic, Gastro and Bariatric Surgeon",
+    visiting:"Every Monday and Thursday — 2:00 PM to 8:00 PM",
+    departments:["Laparoscopic and Bariatric Surgery"],
+    about:"Dr. Ram Raksha Pal Rajput is one of the most accomplished laparoscopic and bariatric surgeons in the region. With 15 years of surgical experience and expertise in minimal access surgery, patients experience less pain, smaller scars, and faster recovery.",
+    services:["All advanced Laparoscopic Gastro-Intestinal Surgeries","Laparoscopic Hernia surgery","Laparoscopic and open surgery for GI tract cancers","Bariatric Weight Loss surgery","Endoscopy and Colonoscopy","Gall bladder, Appendix and Intestinal surgeries"],
+    achievements:["15000+ Laparoscopic and open GI Surgeries","1000+ Bariatric Surgeries","10000+ Endoscopy and Colonoscopy procedures"]
   },
   {
-    name: "Dr. Gaurang Desai",
-    photo: "images/Gaurang_Desai.jpg",
-    qualification: "MBBS, MS, FISCP",
-    specialization: "Consultant Laparoscopic Surgeon and Proctologist",
-    visiting: "Every Saturday — 5:00 PM to 7:00 PM",
-    departments: ["Laparoscopic and Bariatric Surgery","Proctology"],
-    experience: "21 Years",
-    about: "Dr. Gaurang Desai is a highly experienced laparoscopic surgeon and proctologist with 21 years in the field. Former Assistant Professor at SMIMMER and NCHS, and previously full-time surgeon at Metas Adventist Hospital Surat.",
-    services: ["Laparoscopic surgeries — Appendix, Gall Bladder, Hernia, Intestinal","Piles, Fistula and Fissure — Laser and Stapler techniques","Hernia and Hydrocele repair","Burns and accident case management"],
-    achievements: []
+    name:"Dr. Gaurang Desai",
+    photo:"images/Gaurang_Desai.jpg",
+    qualification:"MBBS, MS, FISCP",
+    specialization:"Consultant Laparoscopic Surgeon and Proctologist",
+    visiting:"Every Saturday — 5:00 PM to 7:00 PM",
+    departments:["Laparoscopic and Bariatric Surgery","Proctology"],
+    about:"Dr. Gaurang Desai is a highly experienced laparoscopic surgeon and proctologist with 21 years in the field. Former Assistant Professor at SMIMMER and NCHS, and previously full-time surgeon at Metas Adventist Hospital Surat.",
+    services:["Laparoscopic surgeries — Appendix, Gall Bladder, Hernia, Intestinal","Piles, Fistula and Fissure — Laser and Stapler techniques","Hernia and Hydrocele repair","Burns and accident case management"],
+    achievements:[]
   },
   {
-    name: "Dr. Ashish G. Goti",
-    photo: "images/Ashish_Goti.jpg",
-    qualification: "MB, MS, DNB Urology",
-    specialization: "Consultant Uro Surgeon",
-    visiting: "Every Wednesday — 10:00 AM to 12:00 PM",
-    departments: ["Urology"],
-    experience: "Urology Specialist",
-    about: "Dr. Ashish G. Goti is a qualified DNB Urologist specializing in advanced urological procedures. He uses the latest laser technology for kidney stone removal — offering patients a safe, stitch-free, and minimally invasive solution.",
-    services: ["Kidney stone laser removal — PCNL, MINIPERC, URS, RIRS (no cut)","Prostate laser surgery — TURP, TUEP, TUIP","Kidney, bladder, prostate and testis treatment","Cancer surgery Laparoscopic","Female urology — TOT, TVT, VVF, UVF, Fistula surgery","Paediatric urology — Pyeloplasty, Circumcision, Hypospadias repair, Orchiopaxy, Herniotomy","Urethroplasty","Male infertility treatment"],
-    achievements: []
+    name:"Dr. Ashish G. Goti",
+    photo:"images/Ashish_Goti.jpg",
+    qualification:"MB, MS, DNB Urology",
+    specialization:"Consultant Uro Surgeon",
+    visiting:"Every Wednesday — 10:00 AM to 12:00 PM",
+    departments:["Urology"],
+    about:"Dr. Ashish G. Goti is a qualified DNB Urologist specializing in advanced urological procedures. He uses the latest laser technology for kidney stone removal — offering patients a safe, stitch-free, and minimally invasive solution.",
+    services:["Kidney stone laser removal — PCNL, MINIPERC, URS, RIRS (no cut)","Prostate laser surgery — TURP, TUEP, TUIP","Kidney, bladder, prostate and testis treatment","Cancer surgery Laparoscopic","Female urology — TOT, TVT, VVF, UVF, Fistula surgery","Paediatric urology — Pyeloplasty, Circumcision, Hypospadias repair, Orchiopaxy, Herniotomy","Urethroplasty","Male infertility treatment"],
+    achievements:[]
   },
   {
-    name: "Dr. Pintu D. Bhakhar",
-    photo: "images/Pintu_Bhakhar.jpg",
-    qualification: "MBBS, MD, DNB",
-    specialization: "Gastroenterologist, Hepatologist and Endocrinologist",
-    visiting: "Every Wednesday — 3:00 PM to 5:00 PM",
-    departments: ["Gastroenterology and Hepatology","Endocrinology"],
-    experience: "Gastro Specialist",
-    about: "Dr. Pintu D. Bhakhar is a specialist in gastroenterology, hepatology, and endocrinology — covering diseases of the stomach, intestines, liver, and hormonal glands. He performs advanced procedures like endoscopy and colonoscopy.",
-    services: ["Endoscopy — examination of esophagus and stomach, chronic acidity treatment","Colonoscopy — examination and treatment of large intestine","Diagnosis and treatment of Jaundice","All liver diseases diagnosis and treatment","Pancreatitis and pancreatic stones treatment"],
-    achievements: []
+    name:"Dr. Pintu D. Bhakhar",
+    photo:"images/Pintu_Bhakhar.jpg",
+    qualification:"MBBS, MD, DNB",
+    specialization:"Gastroenterologist, Hepatologist and Endocrinologist",
+    visiting:"Every Wednesday — 3:00 PM to 5:00 PM",
+    departments:["Gastroenterology and Hepatology","Endocrinology"],
+    about:"Dr. Pintu D. Bhakhar is a specialist in gastroenterology, hepatology, and endocrinology — covering diseases of the stomach, intestines, liver, and hormonal glands. He performs advanced procedures like endoscopy and colonoscopy.",
+    services:["Endoscopy — examination of esophagus and stomach, chronic acidity treatment","Colonoscopy — examination and treatment of large intestine","Diagnosis and treatment of Jaundice","All liver diseases diagnosis and treatment","Pancreatitis and pancreatic stones treatment"],
+    achievements:[]
   },
   {
-    name: "Dr. Piyush Savliya",
-    photo: "images/Piyush_Savliya.jpg",
-    qualification: "MD, DM",
-    specialization: "Neuro Physician — Brain, Nerves and Spine Specialist",
-    visiting: "Every Tuesday — 2:00 PM to 4:00 PM",
-    departments: ["Neurology"],
-    experience: "Neurology Specialist",
-    about: "Dr. Piyush Savliya is a specialist Neuro Physician from Surat now serving patients in Bardoli at Nova Lifeline. He offers specialized diagnostic tests like NCS, EMG, and EEG that were previously only available in large cities.",
-    services: ["Headache and migraine","Neck and back pain","Stroke, haemorrhage and paralysis","Epilepsy and seizures","Dizziness and vertigo","Spine and nerve disorders","Weakness and numbness in hands and feet","Parkinson's disease and tremors","Memory problems and sleep disorders"],
-    achievements: ["NCS — Nerve Conduction Study","EMG — Electromyography","EEG — Electroencephalogram Brain Wave Test"]
+    name:"Dr. Piyush Savliya",
+    photo:"images/Piyush_Savliya.jpg",
+    qualification:"MD, DM",
+    specialization:"Neuro Physician — Brain, Nerves and Spine Specialist",
+    visiting:"Every Tuesday — 2:00 PM to 4:00 PM",
+    departments:["Neurology"],
+    about:"Dr. Piyush Savliya is a specialist Neuro Physician from Surat now serving patients in Bardoli at Nova Lifeline. He offers specialized diagnostic tests like NCS, EMG, and EEG that were previously only available in large cities.",
+    services:["Headache and migraine","Neck and back pain","Stroke, haemorrhage and paralysis","Epilepsy and seizures","Dizziness and vertigo","Spine and nerve disorders","Weakness and numbness in hands and feet","Parkinson's disease and tremors","Memory problems and sleep disorders"],
+    achievements:["NCS — Nerve Conduction Study","EMG — Electromyography","EEG — Electroencephalogram Brain Wave Test"]
   },
   {
-    name: "Dr. Vishal Gandhi",
-    photo: "images/Vishal_Gandhi.jpg",
-    qualification: "MD Psychiatry",
-    specialization: "Consultant Psychiatrist and Mental Health Specialist",
-    visiting: "Every Monday — 11:00 AM Onwards",
-    departments: ["Psychiatry and Mental Health"],
-    experience: "Psychiatry Specialist",
-    about: "Dr. Vishal Gandhi is a qualified MD Psychiatrist providing mental health consultations at Nova Lifeline. He ensures patients in Bardoli have access to professional psychiatric evaluation and treatment in a comfortable and confidential environment.",
-    services: ["Depression and anxiety disorders","Stress and burnout management","Sleep disorders and insomnia","Schizophrenia and psychosis","Bipolar disorder","Addiction and substance abuse","OCD and phobias","General mental health consultations"],
-    achievements: []
+    name:"Dr. Vishal Gandhi",
+    photo:"images/Vishal_Gandhi.jpg",
+    qualification:"MD Psychiatry",
+    specialization:"Consultant Psychiatrist and Mental Health Specialist",
+    visiting:"Every Monday — 11:00 AM Onwards",
+    departments:["Psychiatry and Mental Health"],
+    about:"Dr. Vishal Gandhi is a qualified MD Psychiatrist providing mental health consultations at Nova Lifeline. He ensures patients in Bardoli have access to professional psychiatric evaluation and treatment in a comfortable and confidential environment.",
+    services:["Depression and anxiety disorders","Stress and burnout management","Sleep disorders and insomnia","Schizophrenia and psychosis","Bipolar disorder","Addiction and substance abuse","OCD and phobias","General mental health consultations"],
+    achievements:[]
   },
   {
-    name: "Dr. Vikas Varma",
-    photo: "images/Vikas_Varma.jpg",
-    qualification: "MBBS, PGDCCI",
-    specialization: "Cardiologist",
-    visiting: "Every Monday — 9:00 AM to 10:00 AM and 12:00 PM to Afternoon",
-    departments: ["Cardiology"],
-    experience: "Cardiology Specialist",
-    about: "Dr. Vikas Varma is Nova Lifeline's Cardiology Specialist. Having a qualified cardiologist available locally means patients can receive timely diagnosis, treatment, and follow-up care for heart conditions without needing to travel to Surat or Vadodara.",
-    services: ["Heart disease diagnosis and management","ECG — Electrocardiogram","Echo 2D — Heart ultrasound","Hypertension management","Chest pain evaluation","Heart failure management","Cardiac risk assessment"],
-    achievements: []
+    name:"Dr. Vikas Varma",
+    photo:"images/Vikas_Varma.jpg",
+    qualification:"MBBS, PGDCCI",
+    specialization:"Cardiologist",
+    visiting:"Every Monday — 9:00 AM to 10:00 AM and 12:00 PM to Afternoon",
+    departments:["Cardiology"],
+    about:"Dr. Vikas Varma is Nova Lifeline's Cardiology Specialist. Having a qualified cardiologist available locally means patients can receive timely diagnosis, treatment, and follow-up care for heart conditions without needing to travel to Surat or Vadodara.",
+    services:["Heart disease diagnosis and management","ECG — Electrocardiogram","Echo 2D — Heart ultrasound","Hypertension management","Chest pain evaluation","Heart failure management","Cardiac risk assessment"],
+    achievements:[]
   },
   {
-    name: "Dr. Harsh Shah",
-    photo: "images/Harsh_Shah.jpg",
-    qualification: "MBBS, DNB",
-    specialization: "Nephrologist — Kidney Specialist",
-    visiting: "Every Monday and Thursday — 8:00 AM to 6:00 PM by Appointment",
-    departments: ["Nephrology and Renal Care"],
-    experience: "Nephrology Specialist",
-    about: "Dr. Harsh Shah is a qualified Nephrologist specializing in kidney diseases and renal care. Supported by Nova Lifeline's advanced Nephrocare and dialysis unit, patients with chronic kidney disease or those requiring dialysis can receive comprehensive nephrology care right in Bardoli.",
-    services: ["Chronic Kidney Disease (CKD) management","Acute kidney injury treatment","Dialysis — regular and emergency sessions","Kidney stone management (medical)","Hypertension related to kidney disease","Pre-transplant evaluation and post-transplant care","Nephrotic syndrome treatment"],
-    achievements: []
+    name:"Dr. Harsh Shah",
+    photo:"images/Harsh_Shah.jpg",
+    qualification:"MBBS, DNB",
+    specialization:"Nephrologist — Kidney Specialist",
+    visiting:"Every Monday and Thursday — 8:00 AM to 6:00 PM by Appointment",
+    departments:["Nephrology and Renal Care"],
+    about:"Dr. Harsh Shah is a qualified Nephrologist specializing in kidney diseases and renal care. Supported by Nova Lifeline's advanced Nephrocare and dialysis unit, patients with chronic kidney disease or those requiring dialysis can receive comprehensive nephrology care right in Bardoli.",
+    services:["Chronic Kidney Disease (CKD) management","Acute kidney injury treatment","Dialysis — regular and emergency sessions","Kidney stone management (medical)","Hypertension related to kidney disease","Pre-transplant evaluation and post-transplant care","Nephrotic syndrome treatment"],
+    achievements:[]
   },
   {
-    name: "Dr. Darshit Pansuriya",
-    photo: "images/Darshit_Pansuriya.jpg",
-    qualification: "MBBS, DNB Medicine, DNB Nephrology",
-    specialization: "Consultant Nephrologist and Transplant Physician",
-    visiting: "Every Monday and Friday — 8:30 AM to 5:30 PM",
-    departments: ["Nephrology and Renal Care","Kidney Transplant"],
-    experience: "Nephrology and Transplant",
-    about: "Dr. Darshit Pansuriya is a Consultant Nephrologist and Transplant Physician with a double DNB in both Medicine and Nephrology. He brings specialized kidney transplant care — both pre-transplant evaluation and post-transplant management.",
-    services: ["Kidney transplant evaluation and post-transplant care","Chronic Kidney Disease management","Dialysis management and planning","Glomerulonephritis and kidney inflammation","Hypertension and kidney disease management","Electrolyte and fluid disorders management"],
-    achievements: []
+    name:"Dr. Darshit Pansuriya",
+    photo:"images/Darshit_Pansuriya.jpg",
+    qualification:"MBBS, DNB Medicine, DNB Nephrology",
+    specialization:"Consultant Nephrologist and Transplant Physician",
+    visiting:"Every Monday and Friday — 8:30 AM to 5:30 PM",
+    departments:["Nephrology and Renal Care","Kidney Transplant"],
+    about:"Dr. Darshit Pansuriya is a Consultant Nephrologist and Transplant Physician with a double DNB in both Medicine and Nephrology. He brings specialized kidney transplant care — both pre-transplant evaluation and post-transplant management.",
+    services:["Kidney transplant evaluation and post-transplant care","Chronic Kidney Disease management","Dialysis management and planning","Glomerulonephritis and kidney inflammation","Hypertension and kidney disease management","Electrolyte and fluid disorders management"],
+    achievements:[]
   },
   {
-    name: "Dr. Hasmukh Ballar",
-    photo: "images/Hasmukh_Ballar.jpg",
-    qualification: "MD, DNB",
-    specialization: "Haemato Oncologist — Blood Cancer Specialist",
-    visiting: "Every Tuesday — 4:00 PM to 6:00 PM by Appointment",
-    departments: ["Haemato Oncology"],
-    experience: "Oncology Specialist",
-    about: "Dr. Hasmukh Ballar is a Haemato Oncologist — a specialist in blood cancers and blood disorders. Having access to a haemato oncologist locally is critical for patients who need timely diagnosis and treatment for conditions like leukaemia and lymphoma.",
-    services: ["Leukaemia diagnosis and treatment","Lymphoma — Hodgkin's and Non-Hodgkin's","Multiple myeloma","Severe anaemia and blood disorders","Platelet and clotting disorders","Bone marrow related conditions","Chemotherapy management and follow-up"],
-    achievements: []
+    name:"Dr. Hasmukh Ballar",
+    photo:"images/Hasmukh_Ballar.jpg",
+    qualification:"MD, DNB",
+    specialization:"Haemato Oncologist — Blood Cancer Specialist",
+    visiting:"Every Tuesday — 4:00 PM to 6:00 PM by Appointment",
+    departments:["Haemato Oncology"],
+    about:"Dr. Hasmukh Ballar is a Haemato Oncologist — a specialist in blood cancers and blood disorders. Having access to a haemato oncologist locally is critical for patients who need timely diagnosis and treatment for conditions like leukaemia and lymphoma.",
+    services:["Leukaemia diagnosis and treatment","Lymphoma — Hodgkin's and Non-Hodgkin's","Multiple myeloma","Severe anaemia and blood disorders","Platelet and clotting disorders","Bone marrow related conditions","Chemotherapy management and follow-up"],
+    achievements:[]
   },
   {
-    name: "Dr. Nisarg Desai",
-    photo: "images/Nisarg_Desai.jpg",
-    qualification: "MS, MCH",
-    specialization: "Plastic Surgeon",
-    visiting: "Every Saturday — 12:00 PM to 2:00 PM by Appointment",
-    departments: ["Plastic and Reconstructive Surgery"],
-    experience: "Plastic Surgery Specialist",
-    about: "Dr. Nisarg Desai is Nova Lifeline's Plastic Surgery specialist covering a wide range of reconstructive and cosmetic procedures — from burn treatment and wound repair to reconstructive surgery after accidents or cancer treatment.",
-    services: ["Burn treatment and wound management","Reconstructive surgery after accidents","Scar revision and skin grafting","Post-cancer reconstructive surgery","Cosmetic surgical procedures","Wound healing and chronic wound care"],
-    achievements: []
+    name:"Dr. Nisarg Desai",
+    photo:"images/Nisarg_Desai.jpg",
+    qualification:"MS, MCH",
+    specialization:"Plastic Surgeon",
+    visiting:"Every Saturday — 12:00 PM to 2:00 PM by Appointment",
+    departments:["Plastic and Reconstructive Surgery"],
+    about:"Dr. Nisarg Desai is Nova Lifeline's Plastic Surgery specialist covering a wide range of reconstructive and cosmetic procedures — from burn treatment and wound repair to reconstructive surgery after accidents or cancer treatment.",
+    services:["Burn treatment and wound management","Reconstructive surgery after accidents","Scar revision and skin grafting","Post-cancer reconstructive surgery","Cosmetic surgical procedures","Wound healing and chronic wound care"],
+    achievements:[]
   },
   {
-    name: "Dr. Jenil Gurnani",
-    photo: "images/Jenil_Gurnani.jpg",
-    qualification: "MS, MCH",
-    specialization: "Neuro and Endo Cranial Surgeon",
-    visiting: "Thursday 2:00 PM and Tuesday 5:00 PM by Appointment",
-    departments: ["Neurosurgery"],
-    experience: "Neurosurgery Specialist",
-    about: "Dr. Jenil Gurnani and his team specialize in neurosurgery and endoscopic cranial surgery — treating complex conditions of the brain and nervous system that require surgical intervention.",
-    services: ["Brain tumour surgery","Endoscopic cranial surgery","Spinal cord surgery","Nerve decompression procedures","Hydrocephalus treatment","Traumatic brain injury management"],
-    achievements: []
+    name:"Dr. Jenil Gurnani",
+    photo:"images/Jenil_Gurnani.jpg",
+    qualification:"MS, MCH",
+    specialization:"Neuro and Endo Cranial Surgeon",
+    visiting:"Thursday 2:00 PM and Tuesday 5:00 PM by Appointment",
+    departments:["Neurosurgery"],
+    about:"Dr. Jenil Gurnani and his team specialize in neurosurgery and endoscopic cranial surgery — treating complex conditions of the brain and nervous system that require surgical intervention.",
+    services:["Brain tumour surgery","Endoscopic cranial surgery","Spinal cord surgery","Nerve decompression procedures","Hydrocephalus treatment","Traumatic brain injury management"],
+    achievements:[]
   },
   {
-    name: "Dr. Kiran Jaiswal",
-    photo: "images/Kiran_Jaiswal.jpg",
-    qualification: "MBBS, MD",
-    specialization: "Spine and Pain Management Specialist",
-    visiting: "Wednesday 10:00 AM to 12:00 PM and Friday 2:00 PM to 8:00 PM",
-    departments: ["Spine and Pain Management","Spine and Trauma Surgery"],
-    experience: "Spine and Pain Specialist",
-    about: "Dr. Kiran Jaiswal and team specialize in spine care and comprehensive pain management. Chronic back pain, neck pain, and spine disorders are among the most common yet debilitating conditions.",
-    services: ["Spine disorder diagnosis and treatment","Chronic back and neck pain management","Nerve root compression treatment","Pain management procedures","Disc prolapse and slip disc treatment","Minimally invasive spine procedures"],
-    achievements: []
+    name:"Dr. Kiran Jaiswal",
+    photo:"images/Kiran_Jaiswal.jpg",
+    qualification:"MBBS, MD",
+    specialization:"Spine and Pain Management Specialist",
+    visiting:"Wednesday 10:00 AM to 12:00 PM and Friday 2:00 PM to 8:00 PM",
+    departments:["Spine and Pain Management","Spine and Trauma Surgery"],
+    about:"Dr. Kiran Jaiswal and team specialize in spine care and comprehensive pain management. Chronic back pain, neck pain, and spine disorders are among the most common yet debilitating conditions.",
+    services:["Spine disorder diagnosis and treatment","Chronic back and neck pain management","Nerve root compression treatment","Pain management procedures","Disc prolapse and slip disc treatment","Minimally invasive spine procedures"],
+    achievements:[]
   },
   {
-    name: "Dr. Paresh Patel",
-    photo: "images/Paresh_Patel.jpg",
-    qualification: "MD",
-    specialization: "Interventional Radiologist",
-    visiting: "Every Thursday — On Call",
-    departments: ["Interventional Radiology","Radiology and Imaging"],
-    experience: "Interventional Radiology Specialist",
-    about: "Dr. Paresh Patel and his team specialize in Interventional Radiology — a minimally invasive specialty that uses imaging techniques like X-ray, CT scan, and ultrasound to guide surgical procedures.",
-    services: ["Interventional procedures guided by imaging","Vascular interventions","Tumour embolization","Biopsy under imaging guidance","Drainage procedures","Pain management via image-guided injections"],
-    achievements: []
+    name:"Dr. Paresh Patel",
+    photo:"images/Paresh_Patel.jpg",
+    qualification:"MD",
+    specialization:"Interventional Radiologist",
+    visiting:"Every Thursday — On Call",
+    departments:["Interventional Radiology","Radiology and Imaging"],
+    about:"Dr. Paresh Patel and his team specialize in Interventional Radiology — a minimally invasive specialty that uses imaging techniques like X-ray, CT scan, and ultrasound to guide surgical procedures.",
+    services:["Interventional procedures guided by imaging","Vascular interventions","Tumour embolization","Biopsy under imaging guidance","Drainage procedures","Pain management via image-guided injections"],
+    achievements:[]
   },
   {
-    name: "Dr. Anuj Clark",
-    photo: "images/Anuj_Clark.jpg",
-    qualification: "MD, IDCCCM, FNB",
-    specialization: "Critical Care Pulmonologist",
-    visiting: "Every Thursday — On Call by Appointment",
-    departments: ["Critical Care and ICU","Pulmonology and Respiratory Medicine"],
-    experience: "Critical Care Specialist",
-    about: "Dr. Anuj Clark is a Critical Care Pulmonologist managing patients in the ICU and those with severe respiratory conditions. His triple qualification in medicine, intensive care, and fellowship training makes him a key part of Nova Lifeline's 10-bed Level-3 ICU team.",
-    services: ["ICU patient management","Severe respiratory failure treatment","Ventilator management","Sepsis and multi-organ failure management","Critical care monitoring and intervention","Post-surgery ICU care"],
-    achievements: []
+    name:"Dr. Anuj Clark",
+    photo:"images/Anuj_Clark.jpg",
+    qualification:"MD, IDCCCM, FNB",
+    specialization:"Critical Care Pulmonologist",
+    visiting:"Every Thursday — On Call by Appointment",
+    departments:["Critical Care and ICU","Pulmonology and Respiratory Medicine"],
+    about:"Dr. Anuj Clark is a Critical Care Pulmonologist managing patients in the ICU and those with severe respiratory conditions. His triple qualification in medicine, intensive care, and fellowship training makes him a key part of Nova Lifeline's 10-bed Level-3 ICU team.",
+    services:["ICU patient management","Severe respiratory failure treatment","Ventilator management","Sepsis and multi-organ failure management","Critical care monitoring and intervention","Post-surgery ICU care"],
+    achievements:[]
   },
   {
-    name: "Dr. Divyang Shah",
-    photo: "images/Divyang_Shah.jpg",
-    qualification: "DM",
-    specialization: "Neurologist and Neuro Physician",
-    visiting: "Daily — On Call",
-    departments: ["Neurology","Neurosurgery"],
-    experience: "Neurology Specialist",
-    about: "Dr. Divyang Shah is a DM Neurologist available on call every day at Nova Lifeline. His daily availability ensures that neurological emergencies — like stroke, seizures, and sudden paralysis — are handled quickly with specialist expertise.",
-    services: ["Stroke diagnosis and emergency management","Epilepsy and seizure management","Parkinson's disease treatment","Neuropathy and nerve pain treatment","Multiple sclerosis management","Migraine and headache disorders","Dementia and memory disorder evaluation"],
-    achievements: []
+    name:"Dr. Divyang Shah",
+    photo:"images/Divyang_Shah.jpg",
+    qualification:"DM",
+    specialization:"Neurologist and Neuro Physician",
+    visiting:"Daily — On Call",
+    departments:["Neurology","Neurosurgery"],
+    about:"Dr. Divyang Shah is a DM Neurologist available on call every day at Nova Lifeline. His daily availability ensures that neurological emergencies — like stroke, seizures, and sudden paralysis — are handled quickly with specialist expertise.",
+    services:["Stroke diagnosis and emergency management","Epilepsy and seizure management","Parkinson's disease treatment","Neuropathy and nerve pain treatment","Multiple sclerosis management","Migraine and headache disorders","Dementia and memory disorder evaluation"],
+    achievements:[]
   },
   {
-    name: "Dr. Nikuj Patel",
-    photo: "images/Nikuj_Patel.jpg",
-    qualification: "MDS Maxillofacial Surgery",
-    specialization: "Oral Oncosurgeon and MDS Maxillofacial Surgeon",
-    visiting: "Every Monday and Thursday — 4:00 PM to 5:00 PM",
-    departments: ["Oral and Maxillofacial Surgery"],
-    experience: "Maxillofacial Surgery Specialist",
-    about: "Dr. Nikuj Patel is a specialist Oral and Maxillofacial Surgeon with expertise in oral cancer surgery. He handles complex conditions of the mouth, jaw, and face — from oral cancer to jaw fractures and facial trauma.",
-    services: ["Oral cancer surgery and oncology","Jaw surgery and reconstruction","Facial trauma and fracture repair","Impacted wisdom tooth removal","Jaw cysts and tumours treatment","Dental implants and maxillofacial reconstruction"],
-    achievements: []
+    name:"Dr. Nikuj Patel",
+    photo:"images/Nikuj_Patel.jpg",
+    qualification:"MDS Maxillofacial Surgery",
+    specialization:"Oral Oncosurgeon and MDS Maxillofacial Surgeon",
+    visiting:"Every Monday and Thursday — 4:00 PM to 5:00 PM",
+    departments:["Oral and Maxillofacial Surgery"],
+    about:"Dr. Nikuj Patel is a specialist Oral and Maxillofacial Surgeon with expertise in oral cancer surgery. He handles complex conditions of the mouth, jaw, and face — from oral cancer to jaw fractures and facial trauma.",
+    services:["Oral cancer surgery and oncology","Jaw surgery and reconstruction","Facial trauma and fracture repair","Impacted wisdom tooth removal","Jaw cysts and tumours treatment","Dental implants and maxillofacial reconstruction"],
+    achievements:[]
   }
 ];
 
-/* =========================================================
+/* ============================================================
    DEPARTMENTS DATA
-   ========================================================= */
-const departments = [
-  { icon:"🫀", name:"Internal Medicine" },
-  { icon:"🦴", name:"Orthopaedics and Joint Replacement" },
-  { icon:"🩻", name:"Spine and Trauma Surgery" },
-  { icon:"👂", name:"ENT Ear Nose and Throat" },
-  { icon:"🫁", name:"Pulmonology and Respiratory Medicine" },
-  { icon:"🏥", name:"Critical Care and ICU" },
-  { icon:"🔬", name:"Laparoscopic and Bariatric Surgery" },
-  { icon:"🩺", name:"Proctology" },
-  { icon:"💧", name:"Urology" },
-  { icon:"🫃", name:"Gastroenterology and Hepatology" },
-  { icon:"⚗️", name:"Endocrinology" },
-  { icon:"🧠", name:"Neurology" },
-  { icon:"🔪", name:"Neurosurgery" },
-  { icon:"🧘", name:"Psychiatry and Mental Health" },
-  { icon:"❤️", name:"Cardiology" },
-  { icon:"🫘", name:"Nephrology and Renal Care" },
-  { icon:"🔄", name:"Kidney Transplant" },
-  { icon:"🩸", name:"Haemato Oncology" },
-  { icon:"🩹", name:"Plastic and Reconstructive Surgery" },
-  { icon:"📡", name:"Interventional Radiology" },
-  { icon:"💊", name:"Spine and Pain Management" },
-  { icon:"🦷", name:"Oral and Maxillofacial Surgery" },
-  { icon:"💊", name:"Pharmacy" },
-  { icon:"🔬", name:"Pathology and Laboratory" },
-  { icon:"📷", name:"Radiology and Imaging" },
-  { icon:"🩺", name:"Dialysis Center" },
-  { icon:"🚨", name:"Emergency and Trauma Center" }
+   ============================================================ */
+const deptList = [
+  "Internal Medicine","Orthopaedics and Joint Replacement","Spine and Trauma Surgery",
+  "ENT Ear Nose and Throat","Pulmonology and Respiratory Medicine","Critical Care and ICU",
+  "Laparoscopic and Bariatric Surgery","Proctology","Urology",
+  "Gastroenterology and Hepatology","Endocrinology","Neurology","Neurosurgery",
+  "Psychiatry and Mental Health","Cardiology","Nephrology and Renal Care",
+  "Kidney Transplant","Haemato Oncology","Plastic and Reconstructive Surgery",
+  "Interventional Radiology","Spine and Pain Management","Oral and Maxillofacial Surgery",
+  "Pharmacy","Pathology and Laboratory","Radiology and Imaging",
+  "Dialysis Center","Emergency and Trauma Center"
 ];
 
-/* =========================================================
-   FACILITIES DATA
-   ========================================================= */
-const facilities = [
-  { photo:"images/facility_icu.jpg",      name:"10-Bed Level-3 ICU",            desc:"Advanced critical care monitoring" },
-  { photo:"images/facility_ot.jpg",       name:"Class 100 Modular OT",           desc:"International standard operation theatre" },
-  { photo:"images/facility_reception.jpg",name:"Reception and Patient Services", desc:"Warm and welcoming" },
-  { photo:"images/facility_lab.jpg",      name:"Pathology Laboratory",           desc:"Complete blood and diagnostic tests" },
-  { photo:"images/facility_pharmacy.jpg", name:"24×7 Pharmacy",                  desc:"Round the clock medicines" },
-  { photo:"images/facility_ward.jpg",     name:"Patient Rooms and Wards",        desc:"Comfortable recovery rooms" },
-  { icon:"📷", name:"CT Scan",              desc:"High resolution diagnostic imaging" },
-  { icon:"☢️",  name:"X-Ray and Sonography",  desc:"Digital imaging services" },
-  { icon:"❤️", name:"ECG and Echo 2D",       desc:"Cardiac diagnostic services" },
-  { icon:"💧", name:"Dialysis Center",       desc:"Advanced renal care" },
-  { icon:"🚑", name:"On-Call Ambulance",     desc:"Emergency transport services" },
-  { icon:"🧠", name:"NCS, EMG and EEG",      desc:"Neurological diagnostic tests" }
-];
+const deptCats = {
+  Surgery:    ["Orthopaedics and Joint Replacement","Spine and Trauma Surgery","ENT Ear Nose and Throat","Laparoscopic and Bariatric Surgery","Proctology","Urology","Neurosurgery","Plastic and Reconstructive Surgery","Oral and Maxillofacial Surgery","Kidney Transplant"],
+  Medicine:   ["Internal Medicine","Pulmonology and Respiratory Medicine","Gastroenterology and Hepatology","Endocrinology","Neurology","Psychiatry and Mental Health","Cardiology","Nephrology and Renal Care","Haemato Oncology","Spine and Pain Management"],
+  Diagnostics:["Interventional Radiology","Pathology and Laboratory","Radiology and Imaging","Pharmacy","Dialysis Center"],
+  Emergency:  ["Emergency and Trauma Center","Critical Care and ICU"]
+};
 
-/* =========================================================
-   STATE
-   ========================================================= */
-let activeDept    = null;
-let searchQuery   = '';
-let panelOpen     = false;
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+function initials(name) {
+  const clean = name.replace(/^Dr\.\s+/, '');
+  const parts = clean.split(' ').filter(p => !p.includes('.') && p.length > 0);
+  if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  return clean.slice(0, 2).toUpperCase();
+}
 
-/* =========================================================
-   INIT
-   ========================================================= */
-document.addEventListener('DOMContentLoaded', () => {
-  buildDepts();
+function docCount(dept) {
+  return doctors.filter(d => d.departments.includes(dept)).length;
+}
+
+/* ============================================================
+   LOADER
+   ============================================================ */
+window.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+
+  setTimeout(() => {
+    loader.classList.add('out');
+    document.body.classList.remove('loading');
+
+    // Animate hero elements
+    document.querySelectorAll('#hero .afu, #hero .afi').forEach(el => {
+      el.classList.add('vis');
+    });
+
+    // Set up scroll observers after brief delay
+    setTimeout(() => {
+      initObservers();
+      initCounters();
+    }, 80);
+  }, 1800);
+
+  // Init everything else immediately
+  buildSpecialities();
   buildDoctors();
-  buildFacilities();
-  initScrollObservers();
-  initNavScroll();
-  initMobileMenu();
-  initRipple();
-  initScrollArrow();
-  initAboutParallax();
-  scheduleHeroAnimations();
+  initNav();
+  initPanel();
+  initWaFloat();
+  initMobMenu();
+  initSpecSearch();
+  initSpecTabs();
 });
 
-/* =========================================================
-   LOADER + HERO SEQUENCE
-   ========================================================= */
-function scheduleHeroAnimations() {
-  setTimeout(() => {
-    document.getElementById('page-loader').classList.add('hidden');
-    document.getElementById('navbar').classList.add('visible');
-    setTimeout(() => animateHeroTitle(), 200);
-  }, 1500);
-}
+/* ============================================================
+   SCROLL OBSERVERS
+   ============================================================ */
+function initObservers() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
 
-function animateHeroTitle() {
-  const text  = 'NOVA LIFELINE';
-  const el    = document.getElementById('hero-title');
-  el.innerHTML = '';
-  [...text].forEach((ch, i) => {
-    const span = document.createElement('span');
-    span.textContent = ch === ' ' ? '\u00A0' : ch;
-    span.className = 'letter' + (ch === ' ' ? ' space' : '');
-    span.style.animationDelay = (i * 70) + 'ms';
-    el.appendChild(span);
+  // Observe all animated elements NOT in hero (hero handles itself)
+  document.querySelectorAll('.afu, .afi').forEach(el => {
+    if (!el.closest('#hero')) obs.observe(el);
   });
-  const totalDelay = text.length * 70 + 450;
-  setTimeout(() => animateTagline(), totalDelay);
-  setTimeout(() => animateStats(), totalDelay + 200);
 }
 
-function animateTagline() {
-  const tagline = 'A Single Destination for Advanced Super-Speciality Care';
-  const el = document.getElementById('hero-tagline');
-  el.innerHTML = '<span class="cursor">&nbsp;</span>';
-  let i = 0;
-  function type() {
-    if (i <= tagline.length) {
-      el.innerHTML = tagline.slice(0, i) + '<span class="cursor">&nbsp;</span>';
-      i++;
-      setTimeout(type, 38);
-    } else {
-      el.innerHTML = tagline;
+/* ============================================================
+   NUMBER COUNTERS
+   ============================================================ */
+function initCounters() {
+  let fired = false;
+  const numSec = document.getElementById('numbers');
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !fired) {
+      fired = true;
+      document.querySelectorAll('.num-val[data-target]').forEach(el => {
+        countUp(el, parseInt(el.dataset.target), 2000);
+      });
+      obs.disconnect();
     }
-  }
-  type();
+  }, { threshold: 0.3 });
+  if (numSec) obs.observe(numSec);
 }
 
-function animateStats() {
-  const boxes = document.querySelectorAll('.stat-box');
-  boxes.forEach((box, idx) => {
-    setTimeout(() => {
-      box.classList.add('in');
-      const target = parseInt(box.dataset.val);
-      const suffix = box.dataset.suf;
-      const numEl  = box.querySelector('.stat-number');
-      countUp(numEl, target, suffix, 1200);
-    }, idx * 150);
-  });
-}
-
-function countUp(el, target, suffix, duration) {
+function countUp(el, target, duration) {
   const start = performance.now();
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
   function frame(now) {
-    const elapsed  = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased    = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(eased * target) + suffix;
-    if (progress < 1) requestAnimationFrame(frame);
+    const t = Math.min((now - start) / duration, 1);
+    el.textContent = Math.round(easeOutCubic(t) * target);
+    if (t < 1) requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
 }
 
-/* =========================================================
-   NAVBAR SCROLL
-   ========================================================= */
-function initNavScroll() {
-  const nav  = document.getElementById('navbar');
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function initNav() {
+  const sections = ['hero','about','services','specialities','doctors','facilities','founder','contact'];
   const links = document.querySelectorAll('.nav-links a');
-  const sections = ['hero','about','founder','departments','doctors','facilities','contact'];
 
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-
-    // Active link
-    let current = 'hero';
+    let cur = 'hero';
     sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top <= 120) current = id;
+      const s = document.getElementById(id);
+      if (s && s.getBoundingClientRect().top <= 90) cur = id;
     });
     links.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      const href = a.getAttribute('href').replace('#', '');
+      a.classList.toggle('active', href === cur);
     });
-  });
+  }, { passive: true });
 }
 
-/* =========================================================
+/* ============================================================
    MOBILE MENU
-   ========================================================= */
-function initMobileMenu() {
-  const hamburger = document.getElementById('hamburger');
-  const menu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
+   ============================================================ */
+function initMobMenu() {
+  const burger = document.getElementById('nav-burger');
+  const menu   = document.getElementById('mob-menu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
     menu.classList.toggle('open');
   });
   menu.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
-      hamburger.classList.remove('open');
+      burger.classList.remove('open');
       menu.classList.remove('open');
     });
   });
 }
 
-/* =========================================================
-   SCROLL ARROW
-   ========================================================= */
-function initScrollArrow() {
-  document.getElementById('scroll-arrow').addEventListener('click', () => {
-    document.getElementById('about').scrollIntoView({ behavior:'smooth' });
-  });
-}
-
-/* =========================================================
-   ABOUT PARALLAX
-   ========================================================= */
-function initAboutParallax() {
-  const wrap = document.getElementById('about-img-wrap');
-  const img  = document.getElementById('about-img');
-  if (!wrap || !img) return;
+/* ============================================================
+   WHATSAPP FLOAT
+   ============================================================ */
+function initWaFloat() {
+  const btn = document.getElementById('wa-float');
   window.addEventListener('scroll', () => {
-    const rect = wrap.getBoundingClientRect();
-    const vh = window.innerHeight;
-    if (rect.bottom < 0 || rect.top > vh) return;
-    const prog = (vh - rect.top) / (vh + rect.height);
-    const offset = (prog - 0.5) * 50;
-    img.style.transform = `translateY(${offset}px)`;
+    btn.classList.toggle('show', window.scrollY > 200);
   }, { passive: true });
 }
 
-/* =========================================================
-   INTERSECTION OBSERVERS
-   ========================================================= */
-function initScrollObservers() {
-  // Fade-up / fade-left / fade-right
-  const animObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('vis');
-        animObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el => animObs.observe(el));
+/* ============================================================
+   BUILD SPECIALITIES GRID
+   ============================================================ */
+let activeCat  = 'All';
+let specSearch = '';
 
-  // Section headings underline
-  const headingObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('drawn');
-        headingObs.unobserve(e.target);
-      }
+function buildSpecialities() {
+  const grid = document.getElementById('spec-grid');
+  grid.innerHTML = '';
+  deptList.forEach((dept, i) => {
+    const count = docCount(dept);
+    const cell  = document.createElement('div');
+    cell.className = 'spec-cell afu';
+    cell.style.setProperty('--sd', String(Math.min(i % 8, 5)));
+    cell.dataset.dept = dept;
+
+    cell.innerHTML = `
+      <div class="spec-cell-name">${dept}</div>
+      <div class="spec-cell-count">${count} Specialist${count !== 1 ? 's' : ''}</div>
+    `;
+    cell.addEventListener('click', () => {
+      filterDoctorsByDept(dept);
+      document.getElementById('doctors').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-heading]').forEach(el => headingObs.observe(el));
+    grid.appendChild(cell);
+  });
+  applySpecFilter();
 }
 
-/* =========================================================
-   BUILD DEPARTMENTS
-   ========================================================= */
-function buildDepts() {
-  const grid = document.getElementById('dept-grid');
-  departments.forEach((d, i) => {
-    const card = document.createElement('div');
-    card.className = 'dept-card fade-up';
-    card.style.transitionDelay = (i * 40) + 'ms';
-    card.innerHTML = `<span class="dept-icon">${d.icon}</span><div class="dept-name">${d.name}</div>`;
-    card.addEventListener('click', () => filterByDept(d.name, card));
-    grid.appendChild(card);
+function applySpecFilter() {
+  document.querySelectorAll('.spec-cell').forEach(cell => {
+    const dept = cell.dataset.dept;
+    const matchesCat  = activeCat === 'All' || (deptCats[activeCat] && deptCats[activeCat].includes(dept));
+    const matchesSearch = dept.toLowerCase().includes(specSearch.toLowerCase());
+    cell.classList.toggle('hidden', !(matchesCat && matchesSearch));
   });
 }
 
-function filterByDept(deptName, clickedCard) {
-  // Toggle: if clicking active dept, reset
-  if (activeDept === deptName) { resetDoctors(); return; }
-  activeDept = deptName;
-  document.querySelectorAll('.dept-card').forEach(c => c.classList.remove('active'));
-  clickedCard.classList.add('active');
-  document.getElementById('filter-label').textContent = deptName;
-  document.getElementById('filter-badge').classList.add('show');
-  applyFilters();
-  setTimeout(() => {
-    document.getElementById('doctors').scrollIntoView({ behavior:'smooth' });
-  }, 200);
+function initSpecTabs() {
+  document.querySelectorAll('.spec-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.spec-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeCat = tab.dataset.cat;
+      applySpecFilter();
+    });
+  });
 }
 
-/* =========================================================
-   BUILD DOCTORS
-   ========================================================= */
+function initSpecSearch() {
+  document.getElementById('spec-search').addEventListener('input', e => {
+    specSearch = e.target.value.trim();
+    applySpecFilter();
+  });
+}
+
+/* ============================================================
+   BUILD DOCTORS GRID
+   ============================================================ */
+let activeDept = null;
+
 function buildDoctors() {
   const grid = document.getElementById('doctors-grid');
+  grid.innerHTML = '';
   doctors.forEach((doc, i) => {
+    const init = initials(doc.name);
     const card = document.createElement('div');
-    card.className = 'doctor-card fade-up';
-    card.style.transitionDelay = (i * 45) + 'ms';
-    card.dataset.name = doc.name.toLowerCase();
+    card.className = 'doc-card afu';
+    card.style.setProperty('--sd', String(Math.min(i % 4, 3)));
+    card.dataset.name  = doc.name.toLowerCase();
     card.dataset.depts = doc.departments.join('|').toLowerCase();
+
     card.innerHTML = `
-      <div class="doc-photo-wrap">
+      <div class="doc-photo">
+        <div class="doc-initials">${init}</div>
         <img src="${doc.photo}" alt="${doc.name}" loading="lazy">
       </div>
-      <div class="doc-name">${doc.name}</div>
-      <div class="doc-qual">${doc.qualification}</div>
-      <div class="doc-spec">${doc.specialization}</div>
-      <div class="doc-visiting">${doc.visiting}</div>
-      <button class="btn-view">View Profile</button>
+      <div class="doc-body">
+        <div class="doc-name">${doc.name}</div>
+        <div class="doc-qual">${doc.qualification}</div>
+        <div class="doc-spec">${doc.specialization}</div>
+        <hr class="doc-sep">
+        <div class="doc-visiting">${doc.visiting}</div>
+        <span class="doc-view">View Profile &nbsp;&rarr;</span>
+      </div>
     `;
-    card.querySelector('.btn-view').addEventListener('click', (e) => {
-      e.stopPropagation();
-      openPanel(i);
-    });
     card.addEventListener('click', () => openPanel(i));
     grid.appendChild(card);
   });
-
-  // Kick scroll observer for newly added cards
-  const animObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('vis'); animObs.unobserve(e.target); }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.doctor-card').forEach(el => animObs.observe(el));
 }
 
-/* =========================================================
-   SEARCH + FILTER DOCTORS
-   ========================================================= */
-function applyFilters() {
-  const cards = document.querySelectorAll('.doctor-card');
-  cards.forEach(card => {
-    const nameMatch = card.dataset.name.includes(searchQuery.toLowerCase());
-    const deptMatch = !activeDept || card.dataset.depts.includes(activeDept.toLowerCase());
-    const show = nameMatch && deptMatch;
-    if (show) {
-      if (card.style.display === 'none') {
-        card.style.display = '';
-        card.style.opacity = '0';
-        requestAnimationFrame(() => {
-          card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-          card.style.opacity = '1';
-        });
-      }
-    } else {
-      card.style.transition = 'opacity 0.3s ease';
-      card.style.opacity = '0';
-      setTimeout(() => { if (card.style.opacity === '0') card.style.display = 'none'; }, 320);
-    }
+function filterDoctorsByDept(dept) {
+  activeDept = dept;
+  document.getElementById('doc-filter-name').textContent = dept;
+  document.getElementById('doc-filter-state').classList.add('show');
+  document.querySelectorAll('.doc-card').forEach(card => {
+    const match = card.dataset.depts.includes(dept.toLowerCase());
+    card.classList.toggle('hidden', !match);
   });
+}
+
+function clearDocFilter() {
+  activeDept = null;
+  document.getElementById('doc-filter-state').classList.remove('show');
+  document.querySelectorAll('.doc-card').forEach(c => c.classList.remove('hidden'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('doc-search').addEventListener('input', (e) => {
-    searchQuery = e.target.value.trim();
-    applyFilters();
-  });
-  document.getElementById('btn-reset').addEventListener('click', resetDoctors);
-  document.getElementById('filter-clear').addEventListener('click', resetDoctors);
+  document.getElementById('doc-clear').addEventListener('click', clearDocFilter);
 });
 
-function resetDoctors() {
-  activeDept  = null;
-  searchQuery = '';
-  document.getElementById('doc-search').value = '';
-  document.getElementById('filter-badge').classList.remove('show');
-  document.querySelectorAll('.dept-card').forEach(c => c.classList.remove('active'));
-  const cards = document.querySelectorAll('.doctor-card');
-  cards.forEach(card => {
-    card.style.display = '';
-    card.style.opacity = '0';
-    requestAnimationFrame(() => {
-      card.style.transition = 'opacity 0.4s ease';
-      card.style.opacity = '1';
-    });
-  });
-}
-
-/* =========================================================
+/* ============================================================
    DOCTOR PANEL
-   ========================================================= */
+   ============================================================ */
 function openPanel(idx) {
   const doc = doctors[idx];
-  document.getElementById('pp-photo').src = doc.photo;
-  document.getElementById('pp-photo').alt = doc.name;
+  const panel   = document.getElementById('doc-panel');
+  const overlay = document.getElementById('panel-overlay');
+
+  // Image + fallback
+  const img  = document.getElementById('pp-img');
+  const init = document.getElementById('pp-init');
+  img.src = doc.photo;
+  img.alt = doc.name;
+  init.textContent = initials(doc.name);
+
+  // Details
+  document.getElementById('pp-dept').textContent  = doc.departments[0];
   document.getElementById('pp-name').textContent  = doc.name;
   document.getElementById('pp-qual').textContent  = doc.qualification;
-  document.getElementById('pp-spec').textContent  = doc.specialization;
-  document.getElementById('pp-exp').textContent   = '⭐ ' + doc.experience;
-  document.getElementById('pp-visit').textContent = doc.visiting;
+  document.getElementById('pp-avail').textContent = doc.visiting;
   document.getElementById('pp-about').textContent = doc.about;
 
-  const svcUl = document.getElementById('pp-services');
-  svcUl.innerHTML = '';
-  doc.services.forEach(s => {
-    const li = document.createElement('li');
-    li.textContent = s;
-    svcUl.appendChild(li);
-  });
+  // Services
+  const svcUl = document.getElementById('pp-svc');
+  svcUl.innerHTML = doc.services.map(s => `<li>${s}</li>`).join('');
 
+  // Achievements
   const achWrap = document.getElementById('pp-ach-wrap');
-  const achDiv  = document.getElementById('pp-ach');
+  const achUl   = document.getElementById('pp-ach');
   if (doc.achievements && doc.achievements.length) {
     achWrap.style.display = '';
-    achDiv.innerHTML = doc.achievements.map(a => `<div class="ach-box">${a}</div>`).join('');
+    achUl.innerHTML = doc.achievements.map(a => `<li>${a}</li>`).join('');
   } else {
     achWrap.style.display = 'none';
   }
 
-  document.getElementById('doctor-panel').classList.add('open');
-  document.getElementById('panel-overlay').classList.add('show');
+  panel.classList.add('open');
+  overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
-  panelOpen = true;
-
-  // Stagger service reveal
-  setTimeout(() => {
-    const items = svcUl.querySelectorAll('li');
-    items.forEach((li, i) => {
-      setTimeout(() => li.classList.add('rev'), i * 80);
-    });
-  }, 420);
+  panel.scrollTop = 0;
 }
 
 function closePanel() {
-  document.getElementById('doctor-panel').classList.remove('open');
-  document.getElementById('panel-overlay').classList.remove('show');
+  document.getElementById('doc-panel').classList.remove('open');
+  document.getElementById('panel-overlay').classList.remove('open');
   document.body.style.overflow = '';
-  panelOpen = false;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initPanel() {
   document.getElementById('panel-close').addEventListener('click', closePanel);
-  document.getElementById('panel-back').addEventListener('click', closePanel);
   document.getElementById('panel-overlay').addEventListener('click', closePanel);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && panelOpen) closePanel(); });
-});
-
-/* =========================================================
-   BUILD FACILITIES
-   ========================================================= */
-function buildFacilities() {
-  const grid = document.getElementById('facilities-grid');
-  facilities.forEach((f, i) => {
-    const card = document.createElement('div');
-    card.className = 'fac-card fade-up';
-    card.style.transitionDelay = (i * 55) + 'ms';
-    if (f.photo) {
-      card.innerHTML = `
-        <div class="fac-photo"><img src="${f.photo}" alt="${f.name}" loading="lazy"></div>
-        <div class="fac-info"><h3>${f.name}</h3><p>${f.desc}</p></div>
-      `;
-    } else {
-      card.innerHTML = `
-        <div class="fac-icon-area">${f.icon}</div>
-        <div class="fac-info"><h3>${f.name}</h3><p>${f.desc}</p></div>
-      `;
-    }
-    grid.appendChild(card);
-  });
-
-  const facObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('vis'); facObs.unobserve(e.target); }
-    });
-  }, { threshold: 0.08 });
-  grid.querySelectorAll('.fade-up').forEach(el => facObs.observe(el));
-}
-
-/* =========================================================
-   RIPPLE EFFECT
-   ========================================================= */
-function initRipple() {
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.btn, .btn-view, .btn-reset, .btn-wa, .btn-outline-teal');
-    if (!btn) return;
-    const rect   = btn.getBoundingClientRect();
-    const size   = Math.max(rect.width, rect.height);
-    const x = e.clientX - rect.left - size / 2;
-    const y = e.clientY - rect.top  - size / 2;
-    const rip = document.createElement('span');
-    rip.className = 'ripple';
-    rip.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px`;
-    btn.appendChild(rip);
-    setTimeout(() => rip.remove(), 620);
-  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 }
 </script>
 </body>
