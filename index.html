@@ -22,12 +22,12 @@
   --color-text-primary:  #1A1916;
   --color-text-secondary:#5C5A55;
   --color-text-tertiary: #9C9A94;
-  --color-accent:        #1B4D3E;
-  --color-accent-light:  #2D6B55;
+  --color-accent:        #22525b;
+  --color-accent-light:  #2d6e78;
   --color-accent-muted:  #E8F0ED;
   --color-white:         #FFFFFF;
-  --color-gold:          #8B6914;
-  --color-gold-light:    #F5F0E8;
+  --color-gold:          #af963d;
+  --color-gold-light:    #f5f0e0;
 
   --space-xs:  0.5rem;
   --space-sm:  1rem;
@@ -965,9 +965,11 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 @media (max-width: 768px) {
   .nav-links   { display: none; }
   .nav-burger  { display: flex; }
-  .hero-inner  { grid-template-columns: 1fr; padding-top: 5rem; gap: 3rem; }
-  .hero-img-col { order: -1; }
-  .hero-img-wrap { max-width: 300px; margin: 0 auto; }
+  .hero-inner  { display: flex; flex-direction: column; gap: 2rem; padding-top: 6rem; }
+  .hero-img-col { order: 1; }
+  .hero-img-wrap { width: 100%; max-width: 280px; margin: 2rem auto 0 auto; aspect-ratio: 1/1; }
+  .hero-img-wrap img { object-position: center top; }
+  .hero-img-cap { text-align: center; padding-top: 1rem; border-top: 1px solid var(--color-border); }
   .about-grid  { grid-template-columns: 1fr; gap: 3rem; }
   .services-grid { grid-template-columns: 1fr 1fr; }
   .spec-header { grid-template-columns: 1fr; }
@@ -980,7 +982,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   #doc-panel   { width: 100vw; }
   .numbers-inner { grid-template-columns: repeat(2, 1fr); }
   .hero-stats  { flex-direction: column; gap: 0; }
-  .hero-stat   { padding: 1.25rem 0; border-left: none !important; border-bottom: 1px solid var(--color-border); }
+  .hero-stat   { width: 100%; text-align: center; padding: 1.25rem 0; border-left: none !important; border-right: none; border-bottom: 1px solid var(--color-border); }
   .hero-stat:last-child { border-bottom: none; }
 }
 @media (max-width: 480px) {
@@ -996,7 +998,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-wordmark">Nova Lifeline</div>
+  <img src="images/nova_logo.png" alt="Nova Lifeline" style="height:64px;width:auto;object-fit:contain;display:block;margin:0 auto;">
   <div class="loader-line"></div>
 </div>
 
@@ -1010,9 +1012,8 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 <!-- NAVIGATION -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#hero" class="nav-wordmark">
-      <span class="nav-wm-main">Nova Lifeline</span>
-      <span class="nav-wm-sub">Super Speciality Hospital</span>
+    <a href="#home" style="display:flex;align-items:center;text-decoration:none;">
+      <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:52px;width:auto;object-fit:contain;display:block;">
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#hero" class="active">Home</a>
@@ -1048,7 +1049,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
       <!-- Left -->
       <div class="hero-left">
         <p class="hero-eyebrow afu" style="--sd:0">Bardoli, Gujarat &mdash; Est. 2009</p>
-        <h1 class="hero-h1 afu" style="--sd:1">Advanced Care,<br>Close to Home.</h1>
+        <h1 class="hero-h1 afu" style="--sd:1">Minds that Cure,<br>Hearts that Care.</h1>
         <p class="hero-desc afu" style="--sd:2">Nova Lifeline Super Speciality Hospital brings 27 specialities and 31 specialists together under one roof in Bardoli &mdash; so you never have to leave your city for world-class medical care.</p>
         <div class="hero-actions afu" style="--sd:3">
           <a href="https://wa.me/919099005205" target="_blank" rel="noopener" class="btn-primary">Book Appointment</a>
@@ -1363,7 +1364,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
         </div>
         <div class="contact-row">
           <span class="c-lbl">Email</span>
-          <span class="c-val">Novalifeline6@gmail.com</span>
+          <span class="c-val"><a href="mailto:Novalifeline6@gmail.com" style="color:inherit;text-decoration:none;transition:text-decoration 0.2s;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Novalifeline6@gmail.com</a></span>
         </div>
         <div class="contact-row">
           <span class="c-lbl">Hours</span>
@@ -1374,10 +1375,12 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
       <div class="afu" style="--sd:1">
         <iframe
           class="contact-map"
-          src="https://www.google.com/maps?q=Bardoli,+Surat+District,+Gujarat+394601&output=embed"
-          allowfullscreen loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Nova Lifeline Hospital Location">
+          src="https://maps.google.com/maps?q=Imperial+Business+Center,+Bardoli+Kadodara+Road,+Bardoli,+Gujarat+394601,+India&output=embed&z=16"
+          width="100%"
+          height="360"
+          style="border:0;border-radius:2px;display:block;"
+          allowfullscreen
+          loading="lazy">
         </iframe>
       </div>
     </div>
@@ -1391,8 +1394,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="ft-wordmark">Nova Lifeline</div>
-        <div class="ft-wm-sub">Super Speciality Hospital</div>
+        <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:48px;width:auto;object-fit:contain;display:block;filter:brightness(0) invert(1);opacity:0.9;">
         <p class="ft-addr">Imperial Business Center, Bardoli Kadodara Road,<br>Surat, Gujarat 394601</p>
       </div>
       <div>
@@ -1411,7 +1413,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
         <ul class="ft-list">
           <li>02622-226695</li>
           <li>99259 06952</li>
-          <li>Novalifeline6@gmail.com</li>
+          <li><a href="mailto:Novalifeline6@gmail.com" style="color:inherit;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Novalifeline6@gmail.com</a></li>
           <li>Open 24 hours, 7 days</li>
         </ul>
       </div>
