@@ -763,7 +763,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 }
 .fac-imgs { display: flex; flex-direction: column; gap: 1rem; }
 .fac-img-wrap {
-  aspect-ratio: 3 / 2; border-radius: var(--radius-md);
+  aspect-ratio: 4 / 3; border-radius: var(--radius-md);
   overflow: hidden; background: var(--color-surface);
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
@@ -1022,11 +1022,12 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   .num-item { border-right: 1px solid rgba(255,255,255,0.15); border-bottom: 1px solid rgba(255,255,255,0.15); }
   .num-item:nth-child(2), .num-item:nth-child(4) { border-right: none; }
   .num-item:nth-child(3), .num-item:nth-child(4) { border-bottom: none; }
-  .hero-stats  { flex-direction: column; gap: 0; align-items: center; }
-  .hero-stat   { width: 100%; text-align: center; padding: 1.25rem 0; border-left: none !important; border-right: none; border-bottom: 1px solid var(--color-border); }
-  .hero-stat:last-child { border-bottom: none; }
-  .hero-stat-num { text-align: center !important; display: block !important; width: 100% !important; }
-  .hero-stat-lbl { text-align: center !important; display: block !important; width: 100% !important; }
+  .hero-stats  { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 0 !important; width: 100% !important; margin-top: 2rem !important; padding-top: 0 !important; border-top: 1px solid var(--color-border) !important; }
+  .hero-stat   { flex: unset !important; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; width: 100% !important; text-align: center !important; padding: 1.5rem 0 !important; padding-left: 0 !important; padding-right: 0 !important; border-left: none !important; border-right: none !important; border-bottom: 1px solid var(--color-border) !important; margin: 0 !important; }
+  .hero-stat + .hero-stat { border-left: none !important; padding-left: 0 !important; padding-right: 0 !important; }
+  .hero-stat:last-child { border-bottom: none !important; }
+  .hero-stat-num { display: block !important; text-align: center !important; width: 100% !important; margin: 0 auto !important; }
+  .hero-stat-lbl { display: block !important; text-align: center !important; width: 100% !important; margin: 0.25rem auto 0 auto !important; }
 }
 @media (max-width: 480px) {
   .services-grid { grid-template-columns: 1fr; }
@@ -1991,7 +1992,7 @@ function initSpecSearch() {
 /* ============================================================
    BUILD DOCTORS GRID
    ============================================================ */
-const DOCTOR_VISIBLE_LIMIT = 3;
+const DOCTOR_VISIBLE_LIMIT = window.innerWidth >= 769 ? 4 : 3;
 let activeDept = null;
 let docShowMoreWrapper = null;
 let doctorsGridEl = null;
@@ -2034,7 +2035,7 @@ function buildDoctors() {
   docShowMoreWrapper = document.createElement('div');
   docShowMoreWrapper.style.cssText = 'text-align:center;margin-top:2.5rem;';
   docShowMoreWrapper.innerHTML = `
-    <p style="font-family:Inter,sans-serif;font-size:0.875rem;color:var(--color-text-tertiary);margin-bottom:1rem;">Showing 3 of 23 specialists</p>
+    <p style="font-family:Inter,sans-serif;font-size:0.875rem;color:var(--color-text-tertiary);margin-bottom:1rem;">Showing ${DOCTOR_VISIBLE_LIMIT} of 23 specialists</p>
     <button id="doc-show-more" style="background:var(--color-accent);color:white;border:none;padding:0.85rem 2.5rem;border-radius:9999px;font-family:Inter,sans-serif;font-size:0.875rem;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:background 0.2s ease,transform 0.15s ease;">View All 23 Specialists</button>
   `;
   doctorsGridEl.parentNode.insertBefore(docShowMoreWrapper, doctorsGridEl.nextSibling);
@@ -2053,7 +2054,7 @@ function buildDoctors() {
         if (count > DOCTOR_VISIBLE_LIMIT) { el.classList.add('doctor-hidden'); el.style.display = 'none'; }
       });
       this.textContent = 'View All 23 Specialists';
-      if (countEl) countEl.textContent = 'Showing 3 of 23 specialists';
+      if (countEl) countEl.textContent = `Showing ${DOCTOR_VISIBLE_LIMIT} of 23 specialists`;
       doctorsGridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
@@ -2096,7 +2097,7 @@ function clearDocFilter() {
     const btn = document.getElementById('doc-show-more');
     const countEl = btn ? btn.previousElementSibling : null;
     if (btn) btn.textContent = 'View All 23 Specialists';
-    if (countEl) countEl.textContent = 'Showing 3 of 23 specialists';
+    if (countEl) countEl.textContent = `Showing ${DOCTOR_VISIBLE_LIMIT} of 23 specialists`;
   }
 }
 
@@ -2157,6 +2158,31 @@ function initPanel() {
   document.getElementById('panel-overlay').addEventListener('click', closePanel);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 }
+
+/* ============================================================
+   RESPONSIVE DOCTOR LIMIT — resize handler
+   ============================================================ */
+window.addEventListener('resize', () => {
+  const newLimit = window.innerWidth >= 769 ? 4 : 3;
+  if (!doctorsGridEl) return;
+  const showMoreBtn = document.getElementById('doc-show-more');
+  const isExpanded = showMoreBtn && showMoreBtn.textContent.includes('Less');
+  if (!isExpanded) {
+    let count = 0;
+    doctorsGridEl.querySelectorAll('[data-doctor-card]').forEach(card => {
+      count++;
+      if (count > newLimit) {
+        card.classList.add('doctor-hidden');
+        card.style.display = 'none';
+      } else {
+        card.classList.remove('doctor-hidden');
+        card.style.display = '';
+      }
+    });
+    const countEl = showMoreBtn ? showMoreBtn.previousElementSibling : null;
+    if (countEl) countEl.textContent = `Showing ${newLimit} of 23 specialists`;
+  }
+});
 </script>
 </body>
 </html>
