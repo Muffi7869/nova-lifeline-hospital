@@ -220,7 +220,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 .hero-h1 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  font-size: clamp(3rem, 5.5vw, 5rem);
+  font-size: clamp(2.75rem, 4.8vw, 5rem);
   line-height: 1.15;
   color: var(--color-text-primary);
 }
@@ -1004,6 +1004,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
 }
 @media (max-width: 768px) {
+  .hero-h1 br { display: none !important; }
   #loader-logo { height: 150px !important; max-width: 360px !important; }
   .loader-line { width: 220px !important; }
   #nav { height: 68px !important; }
