@@ -103,7 +103,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   position: sticky; top: 0; z-index: 100;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border);
-  height: 88px;
+  height: 100px;
   box-shadow: 0 1px 0 var(--color-border), 0 4px 16px rgba(0,0,0,0.04);
   transition: box-shadow 0.3s ease;
 }
@@ -997,8 +997,8 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
 }
 @media (max-width: 768px) {
-  #nav { height: 72px; }
-  #nav a img { height: 52px !important; max-width: 160px !important; }
+  #nav { height: 80px; }
+  #nav a img { height: 88px !important; width: auto !important; max-width: none !important; margin: 0 !important; padding: 0 !important; }
   .nav-links   { display: none; }
   .nav-burger  { display: flex; }
   .hero-inner  { display: flex; flex-direction: column; gap: 2rem; padding-top: 6rem; }
@@ -1056,8 +1056,8 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 <!-- NAVIGATION -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#home" style="display:flex;align-items:center;text-decoration:none;">
-      <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:64px;width:auto;object-fit:contain;display:block;max-width:200px;">
+    <a href="#home" style="display:flex;align-items:center;text-decoration:none;margin:0;padding:0;">
+      <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:109px;width:auto;object-fit:contain;display:block;max-width:none;margin:0;padding:0;">
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#hero" class="active">Home</a>
