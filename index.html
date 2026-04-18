@@ -70,8 +70,9 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   position: fixed; inset: 0;
   background: var(--color-bg);
   z-index: 9999;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  display: flex !important; flex-direction: column !important;
+  align-items: center !important; justify-content: center !important;
+  min-height: 100vh !important;
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 #loader.out { opacity: 0; transform: translateY(-8px); pointer-events: none; }
@@ -997,6 +998,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
 }
 @media (max-width: 768px) {
+  #loader-logo { height: 150px !important; max-width: 360px !important; }
   #nav { height: 80px; }
   #nav a img { height: 88px !important; width: auto !important; max-width: none !important; margin: 0 !important; padding: 0 !important; }
   .nav-links   { display: none; }
@@ -1042,7 +1044,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 
 <!-- LOADER -->
 <div id="loader">
-  <img src="images/nova_logo.png" alt="Nova Lifeline" style="height:80px;width:auto;object-fit:contain;display:block;margin:0 auto;">
+  <img src="images/nova_logo.png" alt="Nova Lifeline" id="loader-logo" style="height:200px;width:auto;max-width:500px;object-fit:contain;display:block;margin:0 auto;">
   <div class="loader-line"></div>
 </div>
 
