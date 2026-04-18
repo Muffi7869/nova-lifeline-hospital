@@ -104,7 +104,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   position: sticky; top: 0; z-index: 100;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border);
-  height: 100px;
+  height: 80px;
   box-shadow: 0 1px 0 var(--color-border), 0 4px 16px rgba(0,0,0,0.04);
   transition: box-shadow 0.3s ease;
 }
@@ -999,8 +999,8 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 }
 @media (max-width: 768px) {
   #loader-logo { height: 150px !important; max-width: 360px !important; }
-  #nav { height: 80px; }
-  #nav a img { height: 88px !important; width: auto !important; max-width: none !important; margin: 0 !important; padding: 0 !important; }
+  #nav { height: 68px !important; }
+  #nav a img { height: 56px !important; width: auto !important; max-width: none !important; margin: 0 !important; padding: 0 !important; }
   .nav-links   { display: none; }
   .nav-burger  { display: flex; }
   .hero-inner  { display: flex; flex-direction: column; gap: 2rem; padding-top: 6rem; }
@@ -1044,7 +1044,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 
 <!-- LOADER -->
 <div id="loader">
-  <img src="images/nova_logo.png" alt="Nova Lifeline" id="loader-logo" style="height:200px;width:auto;max-width:500px;object-fit:contain;display:block;margin:0 auto;">
+  <img src="images/nova_logo.png" alt="Nova Lifeline" id="loader-logo" style="height:180px;width:auto;object-fit:contain;display:block;margin:0 auto;max-width:480px;opacity:1;filter:none;">
   <div class="loader-line"></div>
 </div>
 
@@ -1059,7 +1059,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 <nav id="nav">
   <div class="nav-inner">
     <a href="#home" style="display:flex;align-items:center;text-decoration:none;margin:0;padding:0;">
-      <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:109px;width:auto;object-fit:contain;display:block;max-width:none;margin:0;padding:0;">
+      <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:56px;width:auto;object-fit:contain;object-position:left center;margin:0;padding:0;display:block;max-width:none;">
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#hero" class="active">Home</a>
@@ -1421,11 +1421,11 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
       <div class="afu" style="--sd:1">
         <iframe
           class="contact-map"
-          src="https://maps.google.com/maps?q=Imperial+Business+Center,+Bardoli+Kadodara+Road,+Bardoli,+Gujarat+394601,+India&output=embed&z=16"
+          src="https://maps.google.com/maps?q=Nova+Lifeline+Super+Speciality+Hospital,+Bardoli,+Gujarat&output=embed&z=17"
           width="100%"
           height="360"
           style="border:0;border-radius:16px;display:block;"
-          allowfullscreen
+          allowfullscreen=""
           loading="lazy">
         </iframe>
       </div>
@@ -1440,7 +1440,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:56px;width:auto;object-fit:contain;display:block;filter:brightness(0) invert(1);opacity:0.9;max-width:200px;">
+        <img src="images/nova_logo.png" alt="Nova Lifeline Super Speciality Hospital" style="height:48px;width:auto;object-fit:contain;display:block;margin:0;padding:0;max-width:none;filter:brightness(0) invert(1);opacity:0.85;">
         <p class="ft-addr">Imperial Business Center, Bardoli Kadodara Road,<br>Surat, Gujarat 394601</p>
       </div>
       <div>
@@ -2013,8 +2013,9 @@ function buildDoctors() {
 
     card.innerHTML = `
       <div class="doc-photo">
-        <div class="doc-initials">${init}</div>
-        <img src="${doc.photo}" alt="${doc.name}" loading="lazy">
+        ${doc.photo && doc.photo.trim() !== ''
+          ? `<img src="${doc.photo}" alt="${doc.name}" loading="lazy">`
+          : `<div class="doc-initials">${init}</div>`}
       </div>
       <div class="doc-body">
         <div class="doc-name">${doc.name}</div>
@@ -2118,9 +2119,17 @@ function openPanel(idx) {
   // Image + fallback
   const img  = document.getElementById('pp-img');
   const init = document.getElementById('pp-init');
-  img.src = doc.photo;
   img.alt = doc.name;
-  init.textContent = initials(doc.name);
+  if (doc.photo && doc.photo.trim() !== '') {
+    img.src = doc.photo;
+    img.style.display = 'block';
+    init.style.display = 'none';
+  } else {
+    img.src = '';
+    img.style.display = 'none';
+    init.textContent = initials(doc.name);
+    init.style.display = 'flex';
+  }
 
   // Details
   document.getElementById('pp-dept').textContent  = doc.departments[0];
