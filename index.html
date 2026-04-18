@@ -1858,11 +1858,25 @@ const DEPT_VISIBLE_LIMIT = 8;
 function buildSpecialities() {
   const grid = document.getElementById('spec-grid');
   grid.innerHTML = '';
-  deptList.forEach((dept, i) => {
+
+  // Calculate how many departments have at least 1 specialist
+  const visibleDeptCount = deptList.filter(dept => docCount(dept) > 0).length;
+
+  // Update section subheading dynamically
+  const specHeading = document.querySelector('.spec-header .sec-heading');
+  if (specHeading) specHeading.textContent = visibleDeptCount + ' Medical Specialities';
+
+  // Update numbers bar departments counter
+  const deptNumLbl = [...document.querySelectorAll('.num-lbl')].find(el => el.textContent.trim() === 'Departments');
+  if (deptNumLbl) deptNumLbl.previousElementSibling.setAttribute('data-target', visibleDeptCount);
+
+  let visibleIndex = 0;
+  deptList.forEach(dept => {
     const count = docCount(dept);
+    if (count === 0) return; // skip departments with no specialists
     const cell  = document.createElement('div');
     cell.className = 'spec-cell afu';
-    cell.style.setProperty('--sd', String(Math.min(i % 8, 5)));
+    cell.style.setProperty('--sd', String(Math.min(visibleIndex % 8, 5)));
     cell.dataset.dept = dept;
     cell.dataset.deptCard = 'true';
 
@@ -1874,18 +1888,19 @@ function buildSpecialities() {
       filterDoctorsByDept(dept);
       document.getElementById('doctors').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-    if (i >= DEPT_VISIBLE_LIMIT) {
+    if (visibleIndex >= DEPT_VISIBLE_LIMIT) {
       cell.classList.add('dept-hidden');
       cell.style.display = 'none';
     }
     grid.appendChild(cell);
+    visibleIndex++;
   });
 
   // Show More button
   const deptShowMoreBtn = document.createElement('div');
   deptShowMoreBtn.id = 'dept-show-more-wrap';
   deptShowMoreBtn.style.cssText = 'text-align:center;margin-top:2rem;grid-column:1/-1;';
-  deptShowMoreBtn.innerHTML = '<button id="dept-show-more" style="background:transparent;border:1px solid var(--color-accent);color:var(--color-accent);padding:0.75rem 2rem;border-radius:9999px;font-family:Inter,sans-serif;font-size:0.875rem;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:background 0.2s ease,color 0.2s ease;">View All 27 Specialities</button>';
+  deptShowMoreBtn.innerHTML = `<button id="dept-show-more" style="background:transparent;border:1px solid var(--color-accent);color:var(--color-accent);padding:0.75rem 2rem;border-radius:9999px;font-family:Inter,sans-serif;font-size:0.875rem;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:background 0.2s ease,color 0.2s ease;">View All ${visibleDeptCount} Specialities</button>`;
   grid.parentNode.insertBefore(deptShowMoreBtn, grid.nextSibling);
 
   document.getElementById('dept-show-more').addEventListener('click', function() {
@@ -1899,7 +1914,7 @@ function buildSpecialities() {
         count++;
         if (count > DEPT_VISIBLE_LIMIT) { el.classList.add('dept-hidden'); el.style.display = 'none'; }
       });
-      this.textContent = 'View All 27 Specialities';
+      this.textContent = `View All ${visibleDeptCount} Specialities`;
       grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
