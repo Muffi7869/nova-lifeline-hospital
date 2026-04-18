@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nova Lifeline Super Speciality Hospital — Bardoli, Gujarat. 27 specialities, 31 specialists. Open 24 hours, 7 days.">
+  <meta name="description" content="Nova Lifeline Super Speciality Hospital — Bardoli, Gujarat. 27 specialities, 17 specialists. Open 24 hours, 7 days.">
   <title>Nova Lifeline Super Speciality Hospital — Bardoli, Gujarat</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1096,14 +1096,14 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
       <div class="hero-left">
         <p class="hero-eyebrow afu" style="--sd:0">Bardoli, Gujarat &mdash; Est. 2009</p>
         <h1 class="hero-h1 afu" style="--sd:1">Minds that Cure,<br>Hearts that Care.</h1>
-        <p class="hero-desc afu" style="--sd:2">Nova Lifeline Super Speciality Hospital brings 27 specialities and 31 specialists together under one roof in Bardoli &mdash; so you never have to leave your city for world-class medical care.</p>
+        <p class="hero-desc afu" style="--sd:2">Nova Lifeline Super Speciality Hospital brings 27 specialities and 17 specialists together under one roof in Bardoli &mdash; so you never have to leave your city for world-class medical care.</p>
         <div class="hero-actions afu" style="--sd:3">
           <a href="https://wa.me/919099005205" target="_blank" rel="noopener" class="btn-primary">Book Appointment</a>
           <a href="#specialities" class="link-secondary">Explore Specialities &nbsp;&rarr;</a>
         </div>
         <div class="hero-stats afu" style="--sd:4">
           <div class="hero-stat">
-            <div class="hero-stat-num">31+</div>
+            <div class="hero-stat-num">17+</div>
             <div class="hero-stat-lbl">Specialists</div>
           </div>
           <div class="hero-stat">
@@ -1136,7 +1136,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   <section id="numbers">
     <div class="numbers-inner">
       <div class="num-item">
-        <div class="num-val" data-target="31">0</div>
+        <div class="num-val" data-target="17">0</div>
         <div class="num-lbl">Specialist Doctors</div>
       </div>
       <div class="num-item">
@@ -1166,7 +1166,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
           <hr class="about-rule">
           <div class="about-body">
             <p>What began as Lifeline Hospital under Dr. Shabbir H. Rajkotwala has grown into Nova Lifeline Super Speciality Hospital &mdash; a comprehensive centre bringing together the finest specialists across 27 disciplines. Our mission has always been simple: ensure that no patient in Bardoli or South Gujarat has to travel to a distant city for quality care.</p>
-            <p>Today, with 31 dedicated specialists, a 10-bed Level-3 ICU, Class 100 operation theatres, and a full diagnostic wing, we deliver on that promise every single day.</p>
+            <p>Today, with 17 dedicated specialists, a 10-bed Level-3 ICU, Class 100 operation theatres, and a full diagnostic wing, we deliver on that promise every single day.</p>
           </div>
         </div>
         <div class="afu" style="--sd:1">
@@ -1372,7 +1372,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
       <div class="afu" style="--sd:1">
         <p class="founder-eyebrow">From the Founder</p>
         <h2 class="founder-h">Our commitment has always been to the patient first.</h2>
-        <p class="founder-body">For over 16 years, my mission has been simple &mdash; to ensure that no patient from Bardoli or South Gujarat has to travel far for quality medical care. Nova Lifeline was built on the belief that advanced super-speciality treatment should be accessible to everyone, right here in their own city. Today, with a team of 31 dedicated specialists and world-class facilities, we stand by that promise every single day.</p>
+        <p class="founder-body">For over 16 years, my mission has been simple &mdash; to ensure that no patient from Bardoli or South Gujarat has to travel far for quality medical care. Nova Lifeline was built on the belief that advanced super-speciality treatment should be accessible to everyone, right here in their own city. Today, with a team of 17 dedicated specialists and world-class facilities, we stand by that promise every single day.</p>
         <hr class="founder-div">
         <div class="founder-attr-name">Dr. Shabbir H. Rajkotwala</div>
         <div class="founder-attr-role">MD Medicine, Founder and Head Physician</div>
@@ -1972,8 +1972,8 @@ function buildDoctors() {
   docShowMoreWrapper = document.createElement('div');
   docShowMoreWrapper.style.cssText = 'text-align:center;margin-top:2.5rem;';
   docShowMoreWrapper.innerHTML = `
-    <p style="font-family:Inter,sans-serif;font-size:0.875rem;color:var(--color-text-tertiary);margin-bottom:1rem;">Showing ${DOCTOR_VISIBLE_LIMIT} of 23 specialists</p>
-    <button id="doc-show-more" style="background:var(--color-accent);color:white;border:none;padding:0.85rem 2.5rem;border-radius:9999px;font-family:Inter,sans-serif;font-size:0.875rem;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:background 0.2s ease,transform 0.15s ease;">View All 23 Specialists</button>
+    <p style="font-family:Inter,sans-serif;font-size:0.875rem;color:var(--color-text-tertiary);margin-bottom:1rem;">Showing ${DOCTOR_VISIBLE_LIMIT} of 17 specialists</p>
+    <button id="doc-show-more" style="background:var(--color-accent);color:white;border:none;padding:0.85rem 2.5rem;border-radius:9999px;font-family:Inter,sans-serif;font-size:0.875rem;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:background 0.2s ease,transform 0.15s ease;">View All 17 Specialists</button>
   `;
   doctorsGridEl.parentNode.insertBefore(docShowMoreWrapper, doctorsGridEl.nextSibling);
 
@@ -1983,15 +1983,15 @@ function buildDoctors() {
     if (hiddenDocs.length > 0) {
       hiddenDocs.forEach(el => { el.classList.remove('doctor-hidden'); el.style.display = ''; });
       this.textContent = 'Show Less';
-      if (countEl) countEl.textContent = 'Showing all 23 specialists';
+      if (countEl) countEl.textContent = 'Showing all 17 specialists';
     } else {
       let count = 0;
       doctorsGridEl.querySelectorAll('[data-doctor-card]').forEach(el => {
         count++;
         if (count > DOCTOR_VISIBLE_LIMIT) { el.classList.add('doctor-hidden'); el.style.display = 'none'; }
       });
-      this.textContent = 'View All 23 Specialists';
-      if (countEl) countEl.textContent = `Showing ${DOCTOR_VISIBLE_LIMIT} of 23 specialists`;
+      this.textContent = 'View All 17 Specialists';
+      if (countEl) countEl.textContent = `Showing ${DOCTOR_VISIBLE_LIMIT} of 17 specialists`;
       doctorsGridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
@@ -2033,8 +2033,8 @@ function clearDocFilter() {
     docShowMoreWrapper.style.display = '';
     const btn = document.getElementById('doc-show-more');
     const countEl = btn ? btn.previousElementSibling : null;
-    if (btn) btn.textContent = 'View All 23 Specialists';
-    if (countEl) countEl.textContent = `Showing ${DOCTOR_VISIBLE_LIMIT} of 23 specialists`;
+    if (btn) btn.textContent = 'View All 17 Specialists';
+    if (countEl) countEl.textContent = `Showing ${DOCTOR_VISIBLE_LIMIT} of 17 specialists`;
   }
 }
 
@@ -2125,7 +2125,7 @@ window.addEventListener('resize', () => {
       }
     });
     const countEl = showMoreBtn ? showMoreBtn.previousElementSibling : null;
-    if (countEl) countEl.textContent = `Showing ${newLimit} of 23 specialists`;
+    if (countEl) countEl.textContent = `Showing ${newLimit} of 17 specialists`;
   }
 });
 </script>
