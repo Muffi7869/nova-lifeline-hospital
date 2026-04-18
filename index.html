@@ -84,9 +84,11 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
   letter-spacing: 0.02em;
 }
 .loader-line {
-  width: 120px; height: 1px;
+  width: 340px; height: 1px;
   background: var(--color-surface-2);
   margin-top: 1.25rem;
+  margin-left: auto !important; margin-right: auto !important;
+  display: block !important;
   position: relative; overflow: hidden;
 }
 .loader-line::after {
@@ -1003,6 +1005,7 @@ button { font-family: 'Inter', sans-serif; cursor: pointer; border: none; backgr
 }
 @media (max-width: 768px) {
   #loader-logo { height: 150px !important; max-width: 360px !important; }
+  .loader-line { width: 220px !important; }
   #nav { height: 68px !important; }
   #nav a img { height: 56px !important; width: auto !important; max-width: none !important; margin: 0 !important; padding: 0 !important; }
   .nav-links   { display: none; }
